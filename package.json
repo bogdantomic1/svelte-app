@@ -8,7 +8,8 @@
     "start": "sirv public --no-clear",
     "autobuild": "rollup -c -w",
     "lint": "eslint src",
-    "deploy": "npx gh-pages -d public"
+    "deploy": "npx gh-pages -d public",
+    "deploy-all": "git add . && git commit -m \"change\" && git push -u origin main && npm run build && npm run deploy"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
