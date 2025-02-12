@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>CT Form Capture Test</title>
+    <!-- <script>
+      (function (a, t, i) {
+        var e = 'MSEI';
+        var s = 'Analytics';
+        var o = e + 'queue';
+        a[o] = a[o] || [];
+        var r =
+          a[e] ||
+          (function (n) {
+            var t = {};
+            t[s] = {};
+            function e(e) {
+              while (e.length) {
+                var r = e.pop();
+                t[s][r] = (function (e) {
+                  return function () {
+                    a[o].push([e, n, arguments]);
+                  };
+                })(r);
+              }
+            }
+            var r = 'track';
+            var i = 'set';
+            e([
+              r + 'Event',
+              r + 'View',
+              r + 'Action',
+              i + 'Property',
+              i + 'User',
+              'initialize',
+              'teardown',
+            ]);
+            return t;
+          })(i.name);
+        var n = i.name;
+        if (!a[e]) {
+          a[n] = r[s];
+          a[o].push(['new', n]);
+          setTimeout(function () {
+            var e = 'script';
+            var r = t.createElement(e);
+            r.async = 1;
+            r.src = i.src;
+            var n = t.getElementsByTagName(e)[0];
+            n.parentNode.insertBefore(r, n);
+          }, 1);
+        } else {
+          a[n] = new r[s]();
+        }
+        if (i.user) {
+          a[n].setUser(i.user);
+        }
+        if (i.props) {
+          for (var c in i.props) {
+            a[n].setProperty(c, i.props[c]);
+          }
+        }
+        a[n].initialize(i.cfg);
+      })(window, document, {
+        src: 'https://download.pi.dynamics.com/sdk/web/msei-0.js',
+        name: 'msdynmkt',
+        cfg: {
+          ingestionKey:
+            'c233c22448aa4a799feedf6dd734d9c4-853de410-b103-4f95-91e2-b5d81be6e270-7136',
+        },
+      });
+    </script> -->
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/build/bundle.css" />
+
+    <script defer src="/build/bundle.js"></script>
+  </head>
+
+  <body>
+    <!-- <script src="https://mktdplp102cdn.azureedge.net/public/latest/js/form-loader.js?v=1.84.2007"></script>
+	<div class="d365-mkt-config" style="display:none"
+		data-website-id="Y_9U22dZLHhYN3_szL3TatVJ5IUKwHs3740htNlaYAk"
+		data-hostname="3ef6b72440a5409d97e02ba917ada52d.svc.dynamics.com">
+	</div> -->
+    <!-- <script>
+      var correlationID = null;
+      function getCorrelationID(event) {
+        if (event.data.msg === 'cid') {
+          correlationID = event.data.data;
+        }
+      }
+      window.addEventListener('message', getCorrelationID, false);
+    </script>
+
+    <script src="https://mktdplp102cdn.azureedge.net/public/latest/js/form-loader.js?v=1.84.2007"></script>
+    <div
+      class="d365-mkt-config"
+      style="display: none"
+      data-website-id="J4EpkawxUIKOE3hNpNJBh0DXFX3FLNWqg24-hhzuFuI"
+      data-hostname="d795010597544199963642dac31315f9.svc.dynamics.com"
+    ></div> -->
+
+    <script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
+
+    <script>
+      // NOTE: for reference see https://go.microsoft.com/fwlink/?linkid=2250770
+
+      // function newSubmit() {
+      //   if (document.getElementById('Email').value.trim() === '') {
+      //     console.log('prazan mejl');
+      //     console.log(
+      //       document.getElementById('Email').value.trim(),
+      //       'ovo je trim',
+      //     );
+      //     console.log(document.getElementById('Email').value, 'ovo je value');
+      //   } else {
+      //     console.log(document.getElementById('Email').value.trim());
+      //     console.log(document.getElementById('Email').value);
+      //   }
+      // }
+    </script>
+  </body>
+</html>
