@@ -1,0 +1,187 @@
+<script>
+  window.addEventListener('beforeunload', (e) => {
+    e.preventDefault();
+    window['msdynmkt'].setUser({ authId: 'btomic@comtrade.com' }); // ID, e-mail or phone number - see instructions
+    window['msdynmkt'].trackEvent({
+      name: 'msdynmkt_testtrigger1_105503091', //Trigger title: testTrigger1
+      ingestionKey:
+        'b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558',
+      version: '1.0.0',
+      properties: {
+        bindingid: '8df8d4e2-30e9-ef11-9342-000d3aba33c2',
+        jobtitle: 'testJT',
+        lastname: 'testLN',
+      },
+    });
+  });
+</script>
+
+<script>
+  (function (a, t, i) {
+    var e = 'MSEI';
+    var s = 'Analytics';
+    var o = e + 'queue';
+    a[o] = a[o] || [];
+    var r =
+      a[e] ||
+      (function (n) {
+        var t = {};
+        t[s] = {};
+        function e(e) {
+          while (e.length) {
+            var r = e.pop();
+            t[s][r] = (function (e) {
+              return function () {
+                a[o].push([e, n, arguments]);
+              };
+            })(r);
+          }
+        }
+        var r = 'track';
+        var i = 'set';
+        e([
+          r + 'Event',
+          r + 'View',
+          r + 'Action',
+          i + 'Property',
+          i + 'User',
+          'initialize',
+          'teardown',
+        ]);
+        return t;
+      })(i.name);
+    var n = i.name;
+    if (!a[e]) {
+      a[n] = r[s];
+      a[o].push(['new', n]);
+      setTimeout(function () {
+        var e = 'script';
+        var r = t.createElement(e);
+        r.async = 1;
+        r.src = i.src;
+        var n = t.getElementsByTagName(e)[0];
+        n.parentNode.insertBefore(r, n);
+      }, 1);
+    } else {
+      a[n] = new r[s]();
+    }
+    if (i.user) {
+      a[n].setUser(i.user);
+    }
+    if (i.props) {
+      for (var c in i.props) {
+        a[n].setProperty(c, i.props[c]);
+      }
+    }
+    a[n].initialize(i.cfg);
+  })(window, document, {
+    src: 'https://download.pi.dynamics.com/sdk/web/msei-0.js',
+    name: 'msdynmkt',
+    cfg: {
+      ingestionKey:
+        'b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558',
+    },
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('ovde sam');
+    // MsCrmMkt.MsCrmFormLoader.on("formLoad", function(event) {
+    //   console.log(event);
+    //   console.log('form loaded');
+    // })
+
+    // MsCrmMkt.MsCrmFormLoader.on("formRender", function(event) {
+    //   console.log(event);
+    //   console.log('form redndered');
+    // })
+
+    d365mktformcapture
+      .waitForElement('#fakeFormTravel') // example: "#form1" as a selector for form with id="form1"
+      .then((form) => {
+        console.log('mapiranje');
+        console.log(form);
+        //newSubmit();
+        const mappings = [
+          {
+            FormFieldName: 'City',
+            DataverseFieldName: 'lastname',
+          },
+          {
+            FormFieldName: 'Taxnumber',
+            DataverseFieldName: 'jobtitle',
+          },
+        ];
+
+        console.log(mappings);
+
+        window.addEventListener(
+          'beforeunload',
+          (e) => {
+            e.preventDefault();
+            //newSubmit();
+            const serializedForm = d365mktformcapture.serializeForm(
+              form,
+              mappings,
+            );
+            console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
+            const payload = serializedForm.SerializedForm.build();
+            console.log(payload);
+
+            const captureConfig = {
+              FormId: 'dee03d17-94e7-ef11-9342-000d3aba33c2',
+              FormApiUrl:
+                'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
+            };
+            const formedUrl =
+              'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
+
+            d365mktformcapture.submitForm(captureConfig, payload).catch((e) => {
+              console.log(e);
+              console.log('Form submission failed');
+            });
+            const raw = JSON.stringify({
+              publishedFormUrl: 'http://localhost:5000/',
+              fields: [
+                {
+                  key: 'lastname',
+                  value: 'testkod',
+                },
+                {
+                  key: 'jobtitle',
+                  value: 'testhardkodekjob',
+                },
+              ],
+              submissionType: 'FormCapture',
+            });
+
+            let blob = new Blob([raw], { type: 'application/json' });
+            navigator.sendBeacon(formedUrl, blob);
+
+            // const myHeaders = new Headers();
+            // myHeaders.append('Content-Type', 'application/json');
+            // myHeaders.append('keepalive', 'true');
+            // myHeaders.append('Keep-Alive', 'true');
+            // myHeaders.append('Origin', 'http://localhost:5000'); // Change this to match your actual domain
+            // //myHeaders.append('X-Requested-With', 'XMLHttpRequest');
+
+            const requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow',
+            };
+            fetch(
+              formedUrl, //'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2',
+              requestOptions,
+            )
+              .then((response) => response.text())
+              .then((result) => console.log(result))
+              .catch((error) => console.error(error));
+          },
+          true,
+        );
+      });
+  });
+</script>
