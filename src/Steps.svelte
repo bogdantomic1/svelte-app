@@ -36,7 +36,7 @@
           console.log(form);
           //newSubmit();
 
-         if (document.getElementById('Email').value.trim() !== '') {
+         
             const mappings = [
             {
               FormFieldName: 'City',
@@ -82,6 +82,7 @@
               //     console.log('Form submission failed');
               //   });
 
+              if (document.getElementById('Email').value.trim() !== '') {
                 fetch(formedUrl, {
                   method: 'post',
                   headers:{
@@ -91,17 +92,19 @@
                   keepalive: true
                 })
                 .then(() => { console.log('submission complete') });
+              } else {
+                console.log("nema")
+                return
+              }
+
+                
              
 
               console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
             },
             true,
           );
-     
-        } else {
-          console.log("nema")
-          return
-        }
+          
          
    });
    
