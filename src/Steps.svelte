@@ -64,7 +64,7 @@
               const captureConfig = {
                 FormId: 'dee03d17-94e7-ef11-9342-000d3aba33c2',
                 FormApiUrl:
-                  'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
+                  'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
               };
               const formedUrl =
                   'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
@@ -75,23 +75,23 @@
                   console.log(e);
                   console.log('Form submission failed');
                 });
-              const raw = JSON.stringify({
-                publishedFormUrl: 'http://localhost:5000/',
-                fields: [
-                  {
-                    key: 'lastname',
-                    value: 'testkod',
-                  },
-                  {
-                    key: 'jobtitle',
-                    value: 'testhardkodekjob',
-                  },
-                ],
-                submissionType: 'FormCapture',
-              });
+              // const raw = JSON.stringify({
+              //   publishedFormUrl: 'http://localhost:5000/',
+              //   fields: [
+              //     {
+              //       key: 'lastname',
+              //       value: 'testkod',
+              //     },
+              //     {
+              //       key: 'jobtitle',
+              //       value: 'testhardkodekjob',
+              //     },
+              //   ],
+              //   submissionType: 'FormCapture',
+              // });
 
-              let blob = new Blob([raw], {type: 'application/json'});
-              navigator.sendBeacon(formedUrl, blob);
+              // let blob = new Blob([raw], {type: 'application/json'});
+              // navigator.sendBeacon(formedUrl, blob);
 
               // const myHeaders = new Headers();
               // myHeaders.append('Content-Type', 'application/json');
