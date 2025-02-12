@@ -69,12 +69,19 @@
               const formedUrl =
                   'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
 
-              d365mktformcapture
-                .submitForm(captureConfig, payload)
-                .catch((e) => {
-                  console.log(e);
-                  console.log('Form submission failed');
-                });
+              // d365mktformcapture
+              //   .submitForm(captureConfig, payload)
+              //   .catch((e) => {
+              //     console.log(e);
+              //     console.log('Form submission failed');
+              //   });
+
+                fetch(captureConfig.FormApiUrl, {
+                  method: 'post',
+                  body: new FormData(document.getElementById('fakeFormTravel')),
+                  keepalive: true
+                })
+                .then(() => { console.log('submission complete') });
               // const raw = JSON.stringify({
               //   publishedFormUrl: 'http://localhost:5000/',
               //   fields: [
