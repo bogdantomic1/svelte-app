@@ -59,7 +59,7 @@
               );
               console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
               const payload = serializedForm.SerializedForm.build();
-              console.log(payload);
+              console.log(payload);  
 
               const captureConfig = {
                 FormId: 'dee03d17-94e7-ef11-9342-000d3aba33c2',
