@@ -36,7 +36,7 @@
           console.log(form);
           //newSubmit();
 
-         if (document.getElementById('Email').value.trim() === '') {
+         if (document.getElementById('Email').value.trim() !== '') {
             const mappings = [
             {
               FormFieldName: 'City',
@@ -132,7 +132,6 @@
         // });
       }
     }
-      // event.returnValue = '';
   
 
   function removeListener() {
