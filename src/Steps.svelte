@@ -78,6 +78,9 @@
 
                 fetch(formedUrl, {
                   method: 'post',
+                  headers:{
+                    'Content-Type': 'application/json;charset=UTF-8'
+                  },
                   body: payload.data,
                   keepalive: true
                 })
