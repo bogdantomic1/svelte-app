@@ -67,7 +67,7 @@
                   'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
               };
               const formedUrl =
-                  'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
+                  'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
 
               // d365mktformcapture
               //   .submitForm(captureConfig, payload)
@@ -85,47 +85,7 @@
                   keepalive: true
                 })
                 .then(() => { console.log('submission complete') });
-              // const raw = JSON.stringify({
-              //   publishedFormUrl: 'http://localhost:5000/',
-              //   fields: [
-              //     {
-              //       key: 'lastname',
-              //       value: 'testkod',
-              //     },
-              //     {
-              //       key: 'jobtitle',
-              //       value: 'testhardkodekjob',
-              //     },
-              //   ],
-              //   submissionType: 'FormCapture',
-              // });
-
-              // let blob = new Blob([raw], {type: 'application/json'});
-              // navigator.sendBeacon(formedUrl, blob);
-
-              // const myHeaders = new Headers();
-              // myHeaders.append('Content-Type', 'application/json');
-              // myHeaders.append('keepalive', 'true');
-              // myHeaders.append('Keep-Alive', 'true');
-              // myHeaders.append('Origin', 'http://localhost:5000'); // Change this to match your actual domain
-              // //myHeaders.append('X-Requested-With', 'XMLHttpRequest');
-
-              
-
-              // const requestOptions = {
-              //   method: 'POST',
-              //   headers: myHeaders,
-              //   body: raw,
-              //   redirect: 'follow',
-              // };
-
-              // fetch(
-              //   formedUrl, //'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2',
-              //   requestOptions,
-              // )
-              //   .then((response) => response.text())
-              //   .then((result) => console.log(result))
-              //   .catch((error) => console.error(error));
+             
 
               console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
             },
