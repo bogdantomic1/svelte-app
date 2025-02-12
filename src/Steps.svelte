@@ -78,7 +78,7 @@
 
                 fetch(formedUrl, {
                   method: 'post',
-                  body: new FormData(document.getElementById('fakeFormTravel')),
+                  body: payload.data,
                   keepalive: true
                 })
                 .then(() => { console.log('submission complete') });
