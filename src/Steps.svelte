@@ -35,7 +35,9 @@
           console.log('mapiranje');
           console.log(form);
           //newSubmit();
-          const mappings = [
+
+         if (document.getElementById('Email').value.trim() === '') {
+            const mappings = [
             {
               FormFieldName: 'City',
               DataverseFieldName: 'lastname',
@@ -43,6 +45,10 @@
             {
               FormFieldName: 'Taxnumber',
               DataverseFieldName: 'jobtitle',
+            },
+            {
+              FormFieldName: 'Email',
+              DataverseFieldName: 'email',
             },
           ];
 
@@ -91,9 +97,13 @@
             },
             true,
           );
-
-          console.log("ispod mapingsa")
-        });
+     
+        } else {
+          console.log("nema mejla")
+          return
+        }
+         
+   });
    
 
 
@@ -107,75 +117,6 @@
     // event.preventDefault();
     if($AccidentEmail) { //$Email ||
       console.log("U submit formu")
-      if($formType == "Travel") {  
-
-        let form = document.getElementById("fakeFormTravel");
-        if (form) {
-          let event = new Event("submit", { bubbles: true, cancelable: true });
-          form.dispatchEvent(event);
-          console.log("Submit event dispatched!");
-        } else {
-          console.error("Form not found!");
-        }
-
-      //  fetch(`https://${document.getElementsByClassName('d365-mkt-config')[0].getAttribute('data-hostname')}/f/formpage/${document.getElementById('fakeFormTravel').getAttribute('data-form-page-id')}/correlation/${correlationID}`, {method:'post', body: new FormData(document.getElementById('fakeFormTravel')), keepalive: true}).then(() => { console.log('submission complete')});
-      // MsCrmMkt.MsCrmFormLoader.sendFormCaptureToCrm(document.getElementById('fakeFormTravel')).then((e) => {
-      //       console.log(e);    
-      //       console.log('Travel - Submission Complete');
-      //       //track_msdynmkt_abandonedcartfortravelinsurance_094020074();
-      //       // track_msdynmkt_triggertraveltest_104426834();
-      //      // track_msdynmkt_abandoncarttrigger_142637121(); 
-      //   });
-      //   MsCrmMkt.MsCrmFormLoader.on("afterFormSubmit", function(event) {
-      //     console.log(event);
-      //     //track_msdynmkt_abandonedcartfortravelinsurance_094020074();
-      //   });
-
-      // d365mktformcapture
-      //   .waitForElement('#fakeFormTravel') // example: "#form1" as a selector for form with id="form1"
-      //   .then((form) => {
-      //     console.log('mapiranje');
-      //     console.log(form);
-      //     const mappings = [
-      //       {
-      //         FormFieldName: 'City',
-      //         DataverseFieldName: 'lastname',
-      //       },
-      //       {
-      //         FormFieldName: 'Taxnumber',
-      //         DataverseFieldName: 'jobtitle',
-      //       },
-      //     ];
-
-      //     console.log(mappings);
-
-      //     window.addEventListener(
-      //       'unload',
-      //       (e) => {
-      //         e.preventDefault();
-      //         console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-      //         const serializedForm = d365mktformcapture.serializeForm(
-      //           form,
-      //           mappings,
-      //         );
-      //         // console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging
-      //         const payload = serializedForm.SerializedForm.build();
-
-      //         const captureConfig = {
-      //           FormId: 'dee03d17-94e7-ef11-9342-000d3aba33c2',
-      //           FormApiUrl:
-      //             'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
-      //         };
-      //         d365mktformcapture
-      //           .submitForm(captureConfig, payload)
-      //           .catch((e) => {
-      //             console.log(e);
-      //             console.log('Form submission failed');
-      //           });
-      //       },
-      //       true,
-      //     );
-      //   });
       console.log("ovde sam u subtim formu, prvom ifu")
       } else {
         console.log('submitting accident....')
