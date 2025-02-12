@@ -48,8 +48,8 @@
 
           console.log(mappings);
 
-          form.addEventListener(
-            'submit',
+          window.addEventListener(
+            'unload',
             (e) => {
               e.preventDefault();
               //newSubmit();
