@@ -99,7 +99,7 @@
           );
      
         } else {
-          console.log("nema mejla")
+          console.log("nema")
           return
         }
          
@@ -133,7 +133,7 @@
       }
     }
       // event.returnValue = '';
-  }
+  
 
   function removeListener() {
     //window.removeEventListener('beforeunload', event => submitForm(event));
