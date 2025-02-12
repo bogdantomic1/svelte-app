@@ -67,7 +67,7 @@
                   'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms',
               };
               const formedUrl =
-                  'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
+                  'https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2';
 
               // d365mktformcapture
               //   .submitForm(captureConfig, payload)
@@ -76,7 +76,7 @@
               //     console.log('Form submission failed');
               //   });
 
-                fetch(captureConfig.FormApiUrl, {
+                fetch(formedUrl, {
                   method: 'post',
                   body: new FormData(document.getElementById('fakeFormTravel')),
                   keepalive: true
