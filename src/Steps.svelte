@@ -38,16 +38,11 @@
 	    // To learn more about the event properties below, please see the documentation on Special attributes for custom triggers.
 	    properties: {
 		 "bindingid" : "8df8d4e2-30e9-ef11-9342-000d3aba33c2",
-		 "jobtitle" : "jobtitleTestJourny",
-		 "lastname" : "lastnametestJourney",
+		 "jobtitle" : "Tomicc",
+		 "lastname" : "Tomicc"
 	    }
       
-	}).then(response => {
-            console.log("✅ Event Sent Successfully:", response);
-        })  
-        .catch(error => {
-            console.error("❌ Error Sending Event:", error);
-        });
+	});
   console.log(window["msdynmkt"]);
   console.log("trek skripta"); 
 
