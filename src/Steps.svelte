@@ -43,7 +43,12 @@
 
 	    }
       
-	});
+	}).then(response => {
+            console.log("✅ Event Sent Successfully:", response);
+        })
+        .catch(error => {
+            console.error("❌ Error Sending Event:", error);
+        });;
   console.log(window["msdynmkt"]);
   console.log("trek skripta");
     }
