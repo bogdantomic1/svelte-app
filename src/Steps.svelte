@@ -32,7 +32,7 @@
     function track_msdynmkt_testtrigger1_105503091() {
         window["msdynmkt"].setUser({ authId: "8df8d4e2-30e9-ef11-9342-000d3aba33c2"});   // ID, e-mail or phone number - see instructions
         window["msdynmkt"].trackEvent({
-            name: "msdynmkt_testtrigger1_105503091", //Trigger title: testTrigger1
+            name: "testTrigger1", //Trigger title: testTrigger1
             ingestionKey : "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
             version: "1.0.0",
 	    // To learn more about the event properties below, please see the documentation on Special attributes for custom triggers.
