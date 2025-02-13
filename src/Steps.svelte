@@ -67,7 +67,7 @@
             },
             {
               FormFieldName: 'Email',
-              DataverseFieldName: 'email',
+              DataverseFieldName: 'emailaddress1',
             },
           ];
 
