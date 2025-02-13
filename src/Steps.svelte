@@ -39,18 +39,18 @@
 	    properties: {
 		 "bindingid" : "8df8d4e2-30e9-ef11-9342-000d3aba33c2",
 		 "jobtitle" : "jobtitleTestJourny",
-		 "lastname" : "lastnametestJourney"
-
+		 "lastname" : "lastnametestJourney",
 	    }
       
 	}).then(response => {
             console.log("✅ Event Sent Successfully:", response);
-        })
+        })  
         .catch(error => {
             console.error("❌ Error Sending Event:", error);
-        });;
+        });
   console.log(window["msdynmkt"]);
-  console.log("trek skripta");
+  console.log("trek skripta"); 
+
     }
 
     d365mktformcapture
