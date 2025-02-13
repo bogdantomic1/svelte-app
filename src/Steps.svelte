@@ -139,8 +139,7 @@
                 fetch(formedUrl, {
                   method: 'post',
                   headers:{
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization': 'Bearer RUPhJuS01TRAAf9f_pCIyvku5B3CfhsD7fU2urWFMT4qQ84fypdtLMszf5mAdd6YZmciVgPgnJykFRq2WSgoxse6_PW76mKO3oWULTm0kM2yjFbLeRyOY7nJBv04BtZlbBcDTBcIvg1vDosbrIkVwZcjrI3eOkDQfommv-uooddVjW4MC2Vn_i3uzTNbG9i7KtCDc1rrXhmHVjO3O-u5XqwhxLCfMlKl5yK0zopqWySTuiAlhHXWj_ArMPXnLTXh'
+                    'Content-Type': 'application/json;charset=UTF-8'
                   },
                   body: payload.data,
                   keepalive: true
