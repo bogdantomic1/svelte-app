@@ -78,7 +78,7 @@
           window.addEventListener(
             'unload',
             (e) => {
-              //e.preventDefault();
+              e.preventDefault();
               
               //newSubmit();
               const serializedForm = d365mktformcapture.serializeForm(
