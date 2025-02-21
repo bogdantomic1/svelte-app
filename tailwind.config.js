@@ -1,7 +1,7 @@
 module.exports = {
-  mode: 'jit',
+  mode: "jit",
   purge: {
-    content: ['./public/index.html', './src/**/*.svelte'],
+    content: ["./public/index.html", "./src/**/*.svelte"],
     options: {
       defaultExtractor: (content) => [
         ...(content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []),

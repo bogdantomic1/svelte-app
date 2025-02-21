@@ -23,6 +23,7 @@
     "gh-pages": "^6.3.0",
     "postcss": "^8.3.6",
     "postcss-load-config": "^3.1.0",
+    "prettier": "3.5.1",
     "rollup": "^2.56.2",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.5",
