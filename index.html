@@ -80,9 +80,9 @@
 
     <script>
       (function (a, t, i) {
-        var e = 'MSEI';
-        var s = 'Analytics';
-        var o = e + 'queue';
+        var e = "MSEI";
+        var s = "Analytics";
+        var o = e + "queue";
         a[o] = a[o] || [];
         var r =
           a[e] ||
@@ -99,25 +99,25 @@
                 })(r);
               }
             }
-            var r = 'track';
-            var i = 'set';
+            var r = "track";
+            var i = "set";
             e([
-              r + 'Event',
-              r + 'View',
-              r + 'Action',
-              i + 'Property',
-              i + 'User',
-              'initialize',
-              'teardown',
+              r + "Event",
+              r + "View",
+              r + "Action",
+              i + "Property",
+              i + "User",
+              "initialize",
+              "teardown",
             ]);
             return t;
           })(i.name);
         var n = i.name;
         if (!a[e]) {
           a[n] = r[s];
-          a[o].push(['new', n]);
+          a[o].push(["new", n]);
           setTimeout(function () {
-            var e = 'script';
+            var e = "script";
             var r = t.createElement(e);
             r.async = 1;
             r.src = i.src;
@@ -137,11 +137,11 @@
         }
         a[n].initialize(i.cfg);
       })(window, document, {
-        src: 'https://download.pi.dynamics.com/sdk/web/msei-0.js',
-        name: 'msdynmkt',
+        src: "https://download.pi.dynamics.com/sdk/web/msei-0.js",
+        name: "msdynmkt",
         cfg: {
           ingestionKey:
-            'b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558',
+            "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
         },
       });
     </script>
