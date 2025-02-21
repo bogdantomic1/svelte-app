@@ -78,7 +78,7 @@
           window.addEventListener(
             'unload',
             (e) => {
-              e.preventDefault();
+              //e.preventDefault();
               
               //newSubmit();
               const serializedForm = d365mktformcapture.serializeForm(
@@ -114,7 +114,7 @@
                   keepalive: true
                 })
                 .then(() => { console.log('submission complete') });
-                track_msdynmkt_testtrigger1_105503091()
+                //track_msdynmkt_testtrigger1_105503091()
               } else {
                 console.log("nema")
                 return
