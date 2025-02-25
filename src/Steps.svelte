@@ -190,7 +190,7 @@
               //   console.log("submission complete");
               // });
               // track_msdynmkt_testtrigger1_105503091();
-              const blob = new Blob([JSON.stringify(payload.data)], {
+              const blob = new Blob([payload.data], {
                 type: "text/plain",
               });
 
