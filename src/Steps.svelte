@@ -129,9 +129,14 @@
                 },
                 body: payload.data,
                 keepalive: true,
-              }).then(() => {
-                console.log("submission complete");
-              });
+              })
+                .then(() => {
+                  console.log("submission complete");
+                })
+                .catch((e) => {
+                  console.log(e);
+                  console.log("Form submission failed12312");
+                });
               //track_msdynmkt_testtrigger1_105503091();
             } else {
               console.log("nema");
