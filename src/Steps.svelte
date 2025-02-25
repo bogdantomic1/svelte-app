@@ -190,7 +190,11 @@
               //   console.log("submission complete");
               // });
               // track_msdynmkt_testtrigger1_105503091();
-              navigator.sendBeacon(formedUrl, payload.data);
+              const blob = new Blob([JSON.stringify(payload.data)], {
+                type: "text/plain",
+              });
+
+              navigator.sendBeacon(formedUrl, blob);
             } else {
               console.log("nema");
               return;
