@@ -65,6 +65,7 @@
           lastname: "Tomicc",
         },
       });
+      console.log("kraj triggera");
     }
 
     d365mktformcapture
