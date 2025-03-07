@@ -137,7 +137,7 @@
                   console.log(e);
                   console.log("Form submission failed12312");
                 });
-              track_msdynmkt_testtrigger1_105503091();
+              //track_msdynmkt_testtrigger1_105503091();
               //navigator.sendBeacon(formedUrl, payload.data);
             } else {
               console.log("nema");
