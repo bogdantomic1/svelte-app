@@ -147,7 +147,7 @@
                 })
                 .catch((e) => {
                   console.log(e);
-                  console.log("Form submission failed12312");
+                  console.log("Form submission failed1rrrrrrr");
                 });
             });
           //track_msdynmkt_testtrigger1_105503091();
