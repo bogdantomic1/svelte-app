@@ -18,20 +18,16 @@
     PhoneNumber,
   } from "../store.js";
   import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
 
-  // function removeListener() {
-  //   //dispatch('userSubmit')
-  //   //submit fakeForm for me, it has onsubmit event
-  //   let form = document.getElementById("fakeFormTravel");
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("Page is fully loaded and ready!");
 
-  // if (form) {
-  //     let event = new Event("submit", { bubbles: true, cancelable: true });
-  //     form.dispatchEvent(event);
-  //     console.log("Submit event dispatched!");
-  // } else {
-  //     console.error("Form not found!");
-  // }
+    // Example: Get form values
+    const emailField = document.getElementById("Email");
+    if (emailField) {
+      console.log("Email:", emailField.value);
+    }
+  });
 </script>
 
 <div

@@ -1,6 +1,7 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
   import Steps from "./Steps.svelte";
+  import Step4 from "./Steps/Step4.svelte";
   export let url = "/";
 </script>
 
