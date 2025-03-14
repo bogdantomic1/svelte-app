@@ -60,7 +60,7 @@
     //     console.log(e);
     //     console.log('Form submission failed');
     //   });
-    function submitFormCapture() {
+    function submitFormCapture(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings);
       console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
       const payload = serializedForm.SerializedForm.build();
@@ -113,7 +113,7 @@
             DataverseFieldName: "emailaddress1",
           },
         ];
-        window.addEventListener("unload", submitFormCapture);
+        window.addEventListener("unload", submitFormCapture(form, mappings));
       });
 
     console.log("na dnu mscrmmkt func");
