@@ -5,7 +5,7 @@
   export let url = "/";
 </script>
 
-<Router {url}>
+<Router {url} useHash={true}>
   <nav>
     <Link to="/" />
   </nav>
