@@ -28,6 +28,10 @@
       console.log("Email:", emailField.value);
     }
   });
+
+  function sayHi() {
+    console.log("hi");
+  }
 </script>
 
 <div
@@ -114,7 +118,7 @@
   </div>
   <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
     <button
-      on:click={console.log("asdasd")}
+      on:click={() => sayHi()}
       class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
       >Submit</button
     >
