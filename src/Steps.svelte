@@ -61,6 +61,8 @@
     //     console.log('Form submission failed');
     //   });
     function submitFormCapture(form, mappings) {
+      console.log("usao sam");
+      console.log(document.getElementById("Email").value.trim());
       const serializedForm = d365mktformcapture.serializeForm(form, mappings);
       console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
       const payload = serializedForm.SerializedForm.build();
