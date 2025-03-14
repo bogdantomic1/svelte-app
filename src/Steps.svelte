@@ -119,43 +119,28 @@
           //     console.log('Form submission failed');
           //   });
 
-          //f (document.getElementById("Email").value.trim() !== "") {
-          fetch(formedUrl, {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json;charset=UTF-8",
-            },
-            body: payload.data,
-            keepalive: true,
-          })
-            .then(() => {
-              console.log("submission complete");
+          if (document.getElementById("Email").value.trim() !== "") {
+            fetch(formedUrl, {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json;charset=UTF-8",
+              },
+              body: payload.data,
+              keepalive: true,
             })
-            .catch((e) => {
-              console.log(e);
-              console.log("Form submission failed12312");
-              fetch(formedUrl, {
-                method: "post",
-                headers: {
-                  "Content-Type": "application/json;charset=UTF-8",
-                },
-                body: payload.data,
-                keepalive: true,
+              .then(() => {
+                console.log("submission complete");
               })
-                .then(() => {
-                  console.log("submission complete");
-                })
-                .catch((e) => {
-                  console.log(e);
-                  console.log("Form submission failed1rrrrrrr");
-                });
-            });
-          //track_msdynmkt_testtrigger1_105503091();
-          //navigator.sendBeacon(formedUrl, payload.data);
-          //}// else {
-          //  console.log("nema");
-          //return;
-          //}
+              .catch((e) => {
+                console.log(e);
+                console.log("Form submission failed12312");
+              });
+            //track_msdynmkt_testtrigger1_105503091();
+            //navigator.sendBeacon(formedUrl, payload.data);
+          } else {
+            console.log("nema");
+            return;
+          }
 
           console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         });
