@@ -92,12 +92,8 @@
 
         console.log(mappings);
 
-        window.addEventListener(
-          "unload",
-          (e) => {
-            //e.preventDefault();
-
-            //newSubmit();
+        window.addEventListener("pagehide", (e) => {
+          if (!e.persisted) {
             const serializedForm = d365mktformcapture.serializeForm(
               form,
               mappings
@@ -145,9 +141,8 @@
             }
 
             console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-          },
-          true
-        );
+          }
+        });
 
         // form.addEventListener(
         //   "submit",
