@@ -49,24 +49,24 @@
     //   console.log('form redndered');
     // })
 
-    function track_msdynmkt_testtrigger1_105503091() {
-      const email = document.getElementById("Email").value;
-      console.log("ovo je email", email);
-      window["msdynmkt"].setUser({ authId: email }); // ID, e-mail or phone number - see instructions
-      window["msdynmkt"].trackEvent({
-        name: "msdynmkt_testtrigger1_105503091", //Trigger title: testTrigger1
-        ingestionKey:
-          "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
-        version: "1.0.0",
-        // To learn more about the event properties below, please see the documentation on Special attributes for custom triggers.
-        properties: {
-          bindingid: "",
-          jobtitle: "Tomicc",
-          lastname: "Tomicc",
-        },
-      });
-      console.log("kraj triggera");
-    }
+    // function track_msdynmkt_testtrigger1_105503091() {
+    //   const email = document.getElementById("Email").value;
+    //   console.log("ovo je email", email);
+    //   window["msdynmkt"].setUser({ authId: email }); // ID, e-mail or phone number - see instructions
+    //   window["msdynmkt"].trackEvent({
+    //     name: "msdynmkt_testtrigger1_105503091", //Trigger title: testTrigger1
+    //     ingestionKey:
+    //       "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
+    //     version: "1.0.0",
+    //     // To learn more about the event properties below, please see the documentation on Special attributes for custom triggers.
+    //     properties: {
+    //       bindingid: "",
+    //       jobtitle: "Tomicc",
+    //       lastname: "Tomicc",
+    //     },
+    //   });
+    //   console.log("kraj triggera");
+    // }
 
     d365mktformcapture
       .waitForElement("#fakeFormTravel") // example: "#form1" as a selector for form with id="form1"
@@ -95,7 +95,7 @@
         window.addEventListener(
           "unload",
           (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             //newSubmit();
             const serializedForm = d365mktformcapture.serializeForm(

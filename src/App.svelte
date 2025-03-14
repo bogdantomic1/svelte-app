@@ -1,18 +1,17 @@
 <script>
-	import { Router, Link, Route } from "svelte-routing";
-  import Steps from "./Steps.svelte"
-	export let url = "/";
-
+  import { Router, Link, Route } from "svelte-routing";
+  import Steps from "./Steps.svelte";
+  export let url = "/";
 </script>
 
-
 <Router {url}>
-	<nav>
-		<Link to="/" />
-  </nav> 
+  <nav>
+    <Link to="/" />
+  </nav>
   <div>
-		<Route path="/"><Steps /></Route>
-	</div>
+    <Route path="/"><Steps /></Route>
+    <Route path="/thankyou"><Step4 /></Route>
+  </div>
 </Router>
 
 <style global>
