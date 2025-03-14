@@ -17,10 +17,11 @@
     Email,
     PhoneNumber,
   } from "../store.js";
+  import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("Page is fully loaded and ready!");
+  onMount(() => {
+    console.log("Component is fully loaded!");
 
     // Example: Get form values
     const emailField = document.getElementById("Email");
