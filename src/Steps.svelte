@@ -36,19 +36,6 @@
   } from "./store.js";
 
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("ovde sam");
-    console.log(window["msdynmkt"]);
-    console.log("trek skripta");
-    // MsCrmMkt.MsCrmFormLoader.on("formLoad", function(event) {
-    //   console.log(event);
-    //   console.log('form loaded');
-    // })
-
-    // MsCrmMkt.MsCrmFormLoader.on("formRender", function(event) {
-    //   console.log(event);
-    //   console.log('form redndered');
-    // })
-
     // function track_msdynmkt_testtrigger1_105503091() {
     //   const email = document.getElementById("Email").value;
     //   console.log("ovo je email", email);
@@ -67,14 +54,51 @@
     //   });
     //   console.log("kraj triggera");
     // }
+    // d365mktformcapture
+    //   .submitForm(captureConfig, payload)
+    //   .catch((e) => {
+    //     console.log(e);
+    //     console.log('Form submission failed');
+    //   });
+    function submitFormCapture() {
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings);
+      console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
+      const payload = serializedForm.SerializedForm.build();
+      console.log(payload);
+      const captureConfig = {
+        FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
+        FormApiUrl:
+          "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
+      };
+      const formedUrl =
+        "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
+      if (document.getElementById("Email").value.trim() !== "") {
+        fetch(formedUrl, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log("submission complete");
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("Form submission failed12312");
+          });
+      } else {
+        console.log("nema");
+        return;
+      }
+
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    }
 
     d365mktformcapture
       .waitForElement("#fakeFormTravel") // example: "#form1" as a selector for form with id="form1"
       .then((form) => {
-        console.log("mapiranje");
-        console.log(form);
-        //newSubmit();
-
         const mappings = [
           {
             FormFieldName: "City",
@@ -89,222 +113,12 @@
             DataverseFieldName: "emailaddress1",
           },
         ];
-
-        console.log(mappings);
-
-        window.addEventListener("unload", (e) => {
-          //e.preventDefault();
-
-          //newSubmit();
-          const serializedForm = d365mktformcapture.serializeForm(
-            form,
-            mappings
-          );
-          console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
-          const payload = serializedForm.SerializedForm.build();
-          console.log(payload);
-
-          const captureConfig = {
-            FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
-            FormApiUrl:
-              "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
-          };
-          const formedUrl =
-            "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
-
-          // d365mktformcapture
-          //   .submitForm(captureConfig, payload)
-          //   .catch((e) => {
-          //     console.log(e);
-          //     console.log('Form submission failed');
-          //   });
-
-          if (document.getElementById("Email").value.trim() !== "") {
-            fetch(formedUrl, {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json;charset=UTF-8",
-              },
-              body: payload.data,
-              keepalive: true,
-            })
-              .then(() => {
-                console.log("submission complete");
-              })
-              .catch((e) => {
-                console.log(e);
-                console.log("Form submission failed12312");
-              });
-            //track_msdynmkt_testtrigger1_105503091();
-            //navigator.sendBeacon(formedUrl, payload.data);
-          } else {
-            console.log("nema");
-            return;
-          }
-
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        });
-
-        // form.addEventListener(
-        //   "submit",
-        //   (e) => {
-        //     e.preventDefault();
-        //     //newSubmit();
-
-        //     const serializedForm = d365mktformcapture.serializeForm(
-        //       form,
-        //       mappings
-        //     );
-        //     console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
-        //     const payload = serializedForm.SerializedForm.build();
-        //     console.log(payload);
-
-        //     const captureConfig = {
-        //       FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
-        //       FormApiUrl:
-        //         "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
-        //     };
-        //     const formedUrl =
-        //       "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
-
-        //     // d365mktformcapture
-        //     //   .submitForm(captureConfig, payload)
-        //     //   .catch((e) => {
-        //     //     console.log(e);
-        //     //     console.log('Form submission failed');
-        //     //   });
-
-        //     if (document.getElementById("Email").value.trim() !== "") {
-        //       // fetch(formedUrl, {
-        //       //   method: "post",
-        //       //   headers: {
-        //       //     "Content-Type": "application/json;charset=UTF-8",
-        //       //   },
-        //       //   body: payload.data,
-        //       //   keepalive: true,
-        //       // }).then(() => {
-        //       //   console.log("submission complete");
-        //       // });
-        //       track_msdynmkt_testtrigger1_105503091();
-        //       // const blob = new Blob([payload.data], {
-        //       //   type: "text/plain",
-        //       // });
-
-        //       // navigator.sendBeacon(formedUrl, blob);
-        //     } else {
-        //       console.log("nema");
-        //       return;
-        //     }
-
-        //     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //   },
-        //   true
-        // );
+        window.addEventListener("unload", submitFormCapture);
       });
 
     console.log("na dnu mscrmmkt func");
   });
   console.log("izasaoa");
-
-  function submitForm(event) {
-    // event.preventDefault();
-    if ($AccidentEmail) {
-      //$Email ||
-      console.log("U submit formu");
-      console.log("ovde sam u subtim formu, prvom ifu");
-    } else {
-      console.log("submitting accident....");
-      // MsCrmMkt.MsCrmFormLoader.sendFormCaptureToCrm(document.getElementById('fakeFormAccident')).then((e) => {
-      //     console.log(e)
-      //     console.log('Accident - Submission Complete');
-      //     // track_msdynmkt_acforaccidentinsurancetest_101137115();
-      //    // track_msdynmkt_abandoncarttrigger_142637121();
-      // });
-
-      // MsCrmMkt.MsCrmFormLoader.on("afterFormSubmit", function(event) {
-      //   console.log(event);
-      // });
-    }
-  }
-
-  function removeListener() {
-    //window.removeEventListener('beforeunload', event => submitForm(event));
-    // if($Email) {
-    //   if($formType == "Travel") {
-    //     console.log('submitting travel exit form')
-    //     //track_msdynmkt_exittrigger_travelinsurancetest_145414019()
-    //     MsCrmMkt.MsCrmFormLoader.sendFormCaptureToCrm(document.getElementById('fakeFormTravelComplete')).then((e) => {
-    //       console.log('Travel Exit form submitted')
-    //     })
-    //   } else {
-    //     console.log('submit accident exit trigger')
-    //   }
-    // }
-    // document.getElementById("fakeForm").submit()
-    // console.log("subitovcao sam ali ovde");
-  }
-
-  // function track_msdynmkt_exittrigger_travelinsurancetest_145414019() {
-  //       window["msdynmkt"].setUser({ authId: "<customer-id>"});   // ID, e-mail or phone number - see instructions
-  //       window["msdynmkt"].trackEvent({
-  //           name: "msdynmkt_exittrigger_travelinsurancetest_145414019", //Trigger title: Exit Trigger - Travel Insurance Test
-  //           ingestionKey : "c233c22448aa4a799feedf6dd734d9c4-853de410-b103-4f95-91e2-b5d81be6e270-7136",
-  //           version: "1.0.0" ,
-  //     properties: {
-  // 	 "bindingid" : "Test789"
-  // 	}
-  //       });
-  //   }
-
-  // function track_msdynmkt_abandonedcartfortravelinsurance_094020074() {
-  //   let duration = "";
-  //   switch($Durationofinsurance) {
-  //     case 206450002:
-  //       duration = "2 days"
-  //       break;
-  //     case 206450003:
-  //       duration = "3 days"
-  //       break;
-  //     case 206450004:
-  //       duration = "5 days"
-  //       break;
-  //     case 206450005:
-  //       duration = "8 days"
-  //       break;
-  //     case 206450006:
-  //       duration = "15 days"
-  //       break;
-  //     case 206450007:
-  //       duration = "21 days"
-  //       break;
-  //     case 206450008:
-  //       duration = "30 days"
-  //       break;
-  //     case 206450009:
-  //       duration = "60 days"
-  //       break;
-  //     case 206450010:
-  //       duration = "1 year"
-  //       break;
-  //   }
-
-  //       window["msdynmkt"].setUser({ authId: $Email});   // ID, e-mail or phone number - see instructions
-  //       window["msdynmkt"].trackEvent({
-  //           name: "msdynmkt_abandonedcartfortravelinsurance_094020074", //Trigger title: Abandoned Cart for Travel Insurance
-  //           ingestionKey : "c233c22448aa4a799feedf6dd734d9c4-853de410-b103-4f95-91e2-b5d81be6e270-7136",
-  //           version: "1.0.0" ,
-  //     properties: {
-  //       "dateofbirth" : $DateOfbirth.toLocaleDateString('en-GB'),
-  //         "durationofinsurance" : duration,
-  //         "durationoftravel" : ($Durationoftrip == 206450000) ? "Less than 90 days" : "90 or more days",
-  //         "firstname" : $FirstName,
-  //         "lastname" : $LastName,
-  //         "numberofpeople" : ($Numberofpeople == 206450000) ? "Individually" : ($Numberofpeople == 206450001) ? "Family" : "Group",
-  //         "travelpackage" : ($Packet == 206450000) ? "A" : ($Packet == 206450001) ? "B" : "C",
-  //         "bindingid" : "bindingid"
-  // 	  }
-  //       });
-  //   }
 
   let count_value;
 
