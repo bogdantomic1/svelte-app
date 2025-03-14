@@ -93,53 +93,52 @@
         console.log(mappings);
 
         window.addEventListener("pagehide", (e) => {
-          //e.preventDefault();
+          if (!e.persisted) {
+            const serializedForm = d365mktformcapture.serializeForm(
+              form,
+              mappings
+            );
+            console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
+            const payload = serializedForm.SerializedForm.build();
+            console.log(payload);
 
-          //newSubmit();
-          const serializedForm = d365mktformcapture.serializeForm(
-            form,
-            mappings
-          );
-          console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
-          const payload = serializedForm.SerializedForm.build();
-          console.log(payload);
+            const captureConfig = {
+              FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
+              FormApiUrl:
+                "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
+            };
+            const formedUrl =
+              "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
 
-          const captureConfig = {
-            FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
-            FormApiUrl:
-              "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
-          };
-          const formedUrl =
-            "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
+            // d365mktformcapture
+            //   .submitForm(captureConfig, payload)
+            //   .catch((e) => {
+            //     console.log(e);
+            //     console.log('Form submission failed');
+            //   });
 
-          // d365mktformcapture
-          //   .submitForm(captureConfig, payload)
-          //   .catch((e) => {
-          //     console.log(e);
-          //     console.log('Form submission failed');
-          //   });
-
-          if (document.getElementById("Email").value.trim() !== "") {
-            fetch(formedUrl, {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json;charset=UTF-8",
-              },
-              body: payload.data,
-              keepalive: true,
-            })
-              .then(() => {
-                console.log("submission complete");
+            if (document.getElementById("Email").value.trim() !== "") {
+              fetch(formedUrl, {
+                method: "post",
+                headers: {
+                  "Content-Type": "application/json;charset=UTF-8",
+                },
+                body: payload.data,
+                keepalive: true,
               })
-              .catch((e) => {
-                console.log(e);
-                console.log("Form submission failed12312");
-              });
-            //track_msdynmkt_testtrigger1_105503091();
-            //navigator.sendBeacon(formedUrl, payload.data);
-          } else {
-            console.log("nema");
-            return;
+                .then(() => {
+                  console.log("submission complete");
+                })
+                .catch((e) => {
+                  console.log(e);
+                  console.log("Form submission failed12312");
+                });
+              //track_msdynmkt_testtrigger1_105503091();
+              //navigator.sendBeacon(formedUrl, payload.data);
+            } else {
+              console.log("nema");
+              return;
+            }
           }
 
           console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
