@@ -229,6 +229,7 @@
       console.log("submitting accident....");
       
   }
+}
 
 
   let count_value;
