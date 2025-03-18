@@ -97,10 +97,10 @@
                 FormFieldName: "FirstName",
                 DataverseFieldName: "firstname",
             },
-            {
-                FormFieldName: "LastName",
-                DataverseFieldName: "lastname",
-            },
+            // {
+            //     FormFieldName: "LastName",
+            //     DataverseFieldName: "lastname",
+            // },
 
         ];
 
