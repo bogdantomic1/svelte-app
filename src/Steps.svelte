@@ -76,18 +76,32 @@
         //newSubmit();
 
         const mappings = [
-          {
-            FormFieldName: "City",
-            DataverseFieldName: "lastname",
-          },
-          {
-            FormFieldName: "Taxnumber",
-            DataverseFieldName: "jobtitle",
-          },
-          {
-            FormFieldName: "Email",
-            DataverseFieldName: "emailaddress1",
-          },
+            {
+                FormFieldName: "Packet",
+                DataverseFieldName: "cr697_package",
+                DataverseFieldValue: [
+                    { FormValue: "206450000", DataverseValue: "290200000" }, // A
+                    { FormValue: "206450001", DataverseValue: "290200001" }, // B
+                    { FormValue: "206450002", DataverseValue: "290200002" }, // C
+                ],
+            },
+            {
+                FormFieldName: "Taxnumber",
+                DataverseFieldName: "cr697_taxnumber",
+            },
+            {
+                FormFieldName: "Email",
+                DataverseFieldName: "emailaddress1",
+            },
+            {
+                FormFieldName: "Firstname",
+                DataverseFieldName: "firstname",
+            },
+            {
+                FormFieldName: "Lastname",
+                DataverseFieldName: "lastname",
+            },
+
         ];
 
         console.log(mappings);
@@ -108,7 +122,7 @@
                 "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
             };
             const formedUrl =
-              "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
+              "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
 
             // d365mktformcapture
             //   .submitForm(captureConfig, payload)
@@ -213,97 +227,9 @@
       console.log("ovde sam u subtim formu, prvom ifu");
     } else {
       console.log("submitting accident....");
-      // MsCrmMkt.MsCrmFormLoader.sendFormCaptureToCrm(document.getElementById('fakeFormAccident')).then((e) => {
-      //     console.log(e)
-      //     console.log('Accident - Submission Complete');
-      //     // track_msdynmkt_acforaccidentinsurancetest_101137115();
-      //    // track_msdynmkt_abandoncarttrigger_142637121();
-      // });
-
-      // MsCrmMkt.MsCrmFormLoader.on("afterFormSubmit", function(event) {
-      //   console.log(event);
-      // });
-    }
+      
   }
 
-  function removeListener() {
-    //window.removeEventListener('beforeunload', event => submitForm(event));
-    // if($Email) {
-    //   if($formType == "Travel") {
-    //     console.log('submitting travel exit form')
-    //     //track_msdynmkt_exittrigger_travelinsurancetest_145414019()
-    //     MsCrmMkt.MsCrmFormLoader.sendFormCaptureToCrm(document.getElementById('fakeFormTravelComplete')).then((e) => {
-    //       console.log('Travel Exit form submitted')
-    //     })
-    //   } else {
-    //     console.log('submit accident exit trigger')
-    //   }
-    // }
-    // document.getElementById("fakeForm").submit()
-    // console.log("subitovcao sam ali ovde");
-  }
-
-  // function track_msdynmkt_exittrigger_travelinsurancetest_145414019() {
-  //       window["msdynmkt"].setUser({ authId: "<customer-id>"});   // ID, e-mail or phone number - see instructions
-  //       window["msdynmkt"].trackEvent({
-  //           name: "msdynmkt_exittrigger_travelinsurancetest_145414019", //Trigger title: Exit Trigger - Travel Insurance Test
-  //           ingestionKey : "c233c22448aa4a799feedf6dd734d9c4-853de410-b103-4f95-91e2-b5d81be6e270-7136",
-  //           version: "1.0.0" ,
-  //     properties: {
-  // 	 "bindingid" : "Test789"
-  // 	}
-  //       });
-  //   }
-
-  // function track_msdynmkt_abandonedcartfortravelinsurance_094020074() {
-  //   let duration = "";
-  //   switch($Durationofinsurance) {
-  //     case 206450002:
-  //       duration = "2 days"
-  //       break;
-  //     case 206450003:
-  //       duration = "3 days"
-  //       break;
-  //     case 206450004:
-  //       duration = "5 days"
-  //       break;
-  //     case 206450005:
-  //       duration = "8 days"
-  //       break;
-  //     case 206450006:
-  //       duration = "15 days"
-  //       break;
-  //     case 206450007:
-  //       duration = "21 days"
-  //       break;
-  //     case 206450008:
-  //       duration = "30 days"
-  //       break;
-  //     case 206450009:
-  //       duration = "60 days"
-  //       break;
-  //     case 206450010:
-  //       duration = "1 year"
-  //       break;
-  //   }
-
-  //       window["msdynmkt"].setUser({ authId: $Email});   // ID, e-mail or phone number - see instructions
-  //       window["msdynmkt"].trackEvent({
-  //           name: "msdynmkt_abandonedcartfortravelinsurance_094020074", //Trigger title: Abandoned Cart for Travel Insurance
-  //           ingestionKey : "c233c22448aa4a799feedf6dd734d9c4-853de410-b103-4f95-91e2-b5d81be6e270-7136",
-  //           version: "1.0.0" ,
-  //     properties: {
-  //       "dateofbirth" : $DateOfbirth.toLocaleDateString('en-GB'),
-  //         "durationofinsurance" : duration,
-  //         "durationoftravel" : ($Durationoftrip == 206450000) ? "Less than 90 days" : "90 or more days",
-  //         "firstname" : $FirstName,
-  //         "lastname" : $LastName,
-  //         "numberofpeople" : ($Numberofpeople == 206450000) ? "Individually" : ($Numberofpeople == 206450001) ? "Family" : "Group",
-  //         "travelpackage" : ($Packet == 206450000) ? "A" : ($Packet == 206450001) ? "B" : "C",
-  //         "bindingid" : "bindingid"
-  // 	  }
-  //       });
-  //   }
 
   let count_value;
 
