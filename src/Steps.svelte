@@ -94,11 +94,11 @@
                 DataverseFieldName: "emailaddress1",
             },
             {
-                FormFieldName: "Firstname",
+                FormFieldName: "FirstName",
                 DataverseFieldName: "firstname",
             },
             {
-                FormFieldName: "Lastname",
+                FormFieldName: "LastName",
                 DataverseFieldName: "lastname",
             },
 
