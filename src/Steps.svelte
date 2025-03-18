@@ -80,9 +80,9 @@
                 FormFieldName: "Packet",
                 DataverseFieldName: "cr697_package",
                 DataverseFieldValue: [
-                    { FormValue: "206450000", DataverseValue: "290200000" }, // A
-                    { FormValue: "206450001", DataverseValue: "290200001" }, // B
-                    { FormValue: "206450002", DataverseValue: "290200002" }, // C
+                    { FormValue: "206450000", DataverseValue: "0" }, // A
+                    { FormValue: "206450001", DataverseValue: "1" }, // B
+                    { FormValue: "206450002", DataverseValue: "2" }, // C
                 ],
             },
             {
