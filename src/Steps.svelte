@@ -101,6 +101,14 @@
             //     FormFieldName: "LastName",
             //     DataverseFieldName: "lastname",
             // },
+            {
+                FormFieldName: "LastName",
+                DataverseFieldName: "cr697_lastnamect",
+            },
+            {
+                FormFieldName: "LastName",
+                DataverseFieldName: "cr697_lastnameleadct",
+            },
 
         ];
 
