@@ -134,6 +134,10 @@
               console.log('User entered the email input field');
           });
 
+          document.querySelector('#Email')?.addEventListener('focus', () => {
+            console.log('User entered the email input field');
+          });
+
     });
     
 
