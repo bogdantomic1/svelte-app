@@ -130,13 +130,9 @@
 //             });
 //         });
 
-          jquery('#Email').on('focus', function() {
-              console.log('User entered the email input field');
-          });
+          jquery('#Email').css("background-color", "red");
 
-          document.querySelector('#Email')?.addEventListener('focus', () => {
-            console.log('User entered the email input field');
-          });
+        
 
     });
     
