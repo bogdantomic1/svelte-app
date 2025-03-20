@@ -40,7 +40,7 @@
     }
     if (document.getElementById("Email").value) {
       console.log("Email:",document.getElementById("Email").value);
-      track_msdynmkt_exittrigger_135927779();
+      track_msdynmkt_exittrigger_135927779(document.getElementById("Email").value);
     }
   });
 
