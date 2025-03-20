@@ -108,10 +108,6 @@
         // Attach pagehide event listener
         window.addEventListener("pagehide", handlePageHide);
 
-        if(currentStep === 2){
-          console.log("ovde sam u step 2");
-          window.removeEventListener("pagehide", handlePageHide);
-        }
     });
     
 
@@ -153,6 +149,10 @@
       });
     }
   };
+
+  function removePageHideListener() {
+    window.removeEventListener("pagehide", handlePageHide);
+  }
 
   let active = "bg-gray-100 border-red-500 text-red-500 rounded-t";
   let notactive = "border-gray-200 hover:text-gray-900";
