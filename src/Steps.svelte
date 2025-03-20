@@ -316,7 +316,10 @@
         </svg>STEP 1
       </a>
       <a
-        on:click={() => setStep(2)}
+        on:click={() =>  {
+          setStep(2);
+          window.onpagehide = null;
+          }}
         class="{$currentStep == 2
           ? active
           : notactive} sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider"
