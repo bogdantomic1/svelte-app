@@ -34,6 +34,7 @@
     "tailwindcss": "^2.2.7"
   },
   "dependencies": {
+    "jquery": "^3.7.1",
     "sirv-cli": "^1.0.12",
     "svelte-routing": "^2.1.0"
   }

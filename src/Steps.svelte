@@ -11,6 +11,7 @@
   import FakeFormAccident from "./FakeFormAccident.svelte";
   import FakeFormTravel from "./FakeFormTravel.svelte";
   import FakeFormTravelComplete from "./FakeFormTravelComplete.svelte";
+  import  jquery from "jquery";
 
   // import jQuery from 'jquery'
 
@@ -44,7 +45,7 @@
         const formedUrl =
             "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
 
-        if (document.getElementById("Email").value.trim() !== "") {
+        if (jquery('#Email').val()) { //document.getElementById("Email").value.trim() !== ""
             fetch(formedUrl, {
                 method: "post",
                 headers: {
@@ -111,6 +112,27 @@
         // Attach pagehide event listener
         window.addEventListener("unload", handlePageHide);
 
+
+//  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
+//             window.removeEventListener("unload", handlePageHide);
+//         });
+//         // Custom jQuery selector for case-insensitive text match
+//     jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
+//         return function (elem) {
+//             return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+//         };
+//     });
+
+//         // Remove pagehide event when clicking specific links containing "prijava"
+//         $('a:icontains(prijava)').each((i, e) => {
+//             $(e).on("click", function () {
+//                 window.removeEventListener("unload", handlePageHide);
+//             });
+//         });
+
+          jquery('#Email').on('focus', function() {
+              console.log('User entered the email input field');
+          });
 
     });
     
