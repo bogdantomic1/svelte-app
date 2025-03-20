@@ -24,10 +24,8 @@
     console.log("Component is fully loaded!");
 
     // Example: Get form values
-    const emailField = document.getElementById("Email");
-
-    function track_msdynmkt_exittrigger_135927779() {
-      window["msdynmkt"].setUser({ authId: emailField.value }); // ID, e-mail or phone number - see instructions
+    function track_msdynmkt_exittrigger_135927779(emailField) {
+      window["msdynmkt"].setUser({ authId: emailField }); // ID, e-mail or phone number - see instructions
       window["msdynmkt"].trackEvent({
         name: "msdynmkt_exittrigger_135927779", //Trigger title: Exit trigger
         ingestionKey:
@@ -40,8 +38,8 @@
 
       console.log("proslo");
     }
-    if (emailField.value) {
-      console.log("Email:", emailField.value);
+    if (document.getElementById("Email").value) {
+      console.log("Email:",document.getElementById("Email").value);
       track_msdynmkt_exittrigger_135927779();
     }
   });
