@@ -65,6 +65,8 @@
         }
     }
 
+    
+
     d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
         const mappings = [
             {
@@ -99,19 +101,16 @@
         ];
 
         // Define the pagehide event listener
+       
         const handlePageHide = (e) => {
-            if (!e.persisted) {
-                submitForm(form, mappings);
-            }
+            // if (!e.persisted) {
+            //     submitForm(form, mappings);
+            // }
+            submitForm(form, mappings);
         };
-
         // Attach pagehide event listener
-        window.addEventListener("pagehide", handlePageHide);
-        
-        function removePageHideListener() {
-          console.log("removing pagehide listener");
-          window.removeEventListener("pagehide", handlePageHide);
-        }
+        window.addEventListener("unload", handlePageHide);
+
 
     });
     

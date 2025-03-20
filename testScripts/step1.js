@@ -227,21 +227,82 @@ $(document).ready(function () {
     d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
         const mappings = [
             {
-                FormFieldName: "Packet",
-                DataverseFieldName: "cr697_package",
+                FormFieldName: "Numberofpeople",
+                DataverseFieldName: "ct_numberofpeoplefortravelinsurance",
                 DataverseFieldValue: [
-                    { FormValue: "206450000", DataverseValue: "0" },
-                    { FormValue: "206450001", DataverseValue: "1" },
-                    { FormValue: "206450002", DataverseValue: "2" },
+                    { FormValue: "206450000", DataverseValue: "206450000" }, // Individually
+                    { FormValue: "206450001", DataverseValue: "206450001" }, // Family
+                    { FormValue: "206450002", DataverseValue: "206450002" }, // Group
+                ],
+            },
+            {
+                FormFieldName: "lnamStartingdayofinsurancee",
+                DataverseFieldName: "ct_startingdateofinsurance",
+            },
+            {
+                FormFieldName: "Durationofinsurance",
+                DataverseFieldName: "ct_durationoftravelinsurance",
+                DataverseFieldValue: [
+                    { FormValue: "206450002", DataverseValue: "206450002" }, // 2 days
+                    { FormValue: "206450003", DataverseValue: "206450003" }, // 3 days
+                    { FormValue: "206450004", DataverseValue: "206450004" }, // 5 days
+                    { FormValue: "206450005", DataverseValue: "206450005" }, // 8 days
+                    { FormValue: "206450006", DataverseValue: "206450006" }, // 15 days
+                    { FormValue: "206450007", DataverseValue: "206450007" }, // 21 days
+                    { FormValue: "206450008", DataverseValue: "206450008" }, // 30 days
+                    { FormValue: "206450009", DataverseValue: "206450009" }, // 60 days
+                    { FormValue: "206450010", DataverseValue: "206450010" }, // 1 year
+                ],
+            },
+            {
+                FormFieldName: "Durationoftrip",
+                DataverseFieldName: "ct_durationoftravel",
+                DataverseFieldValue: [
+                    { FormValue: "206450000", DataverseValue: "206450000" }, // Less than 90 days
+                    { FormValue: "206450001", DataverseValue: "206450001" }, // 90 or more days
+                ],
+            },
+            {
+                FormFieldName: "Riskexposure",
+                DataverseFieldName: "ct_exposuretorisk",
+                DataverseFieldValue: [
+                    { FormValue: "206450000", DataverseValue: "206450000" }, // Yes
+                    { FormValue: "206450001", DataverseValue: "206450001" }, // No
+                ],
+            },
+            {
+                FormFieldName: "Packet",
+                DataverseFieldName: "ct_travelpackage",
+                DataverseFieldValue: [
+                    { FormValue: "206450000", DataverseValue: "206450000" }, // A
+                    { FormValue: "206450001*", DataverseValue: "206450001" }, // B
+                    { FormValue: "206450002", DataverseValue: "206450002" }, // C
                 ],
             },
             {
                 FormFieldName: "Taxnumber",
-                DataverseFieldName: "cr697_taxnumber",
+                DataverseFieldName: "in2_tax_number",
             },
             {
-                FormFieldName: "Email",
-                DataverseFieldName: "emailaddress1",
+                FormFieldName: "City",
+                DataverseFieldName: "address1_city",
+            },
+            {
+                FormFieldName: "Street",
+                DataverseFieldName: "in2_address1_street",
+            },
+            {
+                FormFieldName: "HouseNumber",
+                DataverseFieldName: "in2_address1_house_no",
+            },
+            {
+                FormFieldName: "GenderCT",
+                DataverseFieldName: "in2_gender",
+                DataverseFieldValue: [
+                    { FormValue: "1", DataverseValue: "1" }, // Male
+                    { FormValue: "2", DataverseValue: "2" }, // Female
+                    { FormValue: "3", DataverseValue: "3" }, // Undefined
+                ],
             },
             {
                 FormFieldName: "FirstName",
@@ -249,27 +310,43 @@ $(document).ready(function () {
             },
             {
                 FormFieldName: "LastName",
-                DataverseFieldName: "cr697_lastnamect",
+                DataverseFieldName: "ct_lastnamect",
             },
             {
-                FormFieldName: "LastName",
-                DataverseFieldName: "cr697_lastnameleadct",
+                FormFieldName: "DateOfbirth",
+                DataverseFieldName: "in2_date_of_birth",
             },
+            {
+                FormFieldName: "Email",
+                DataverseFieldName: "ct_emailct",
+            },
+            {
+                FormFieldName: "PhoneNumber",
+                DataverseFieldName: "in2_input_mobile_phone",
+            },
+            // {
+            //     FormFieldName: "LastName",
+            //     DataverseFieldName: "lastname",
+            // },
+            {
+                FormFieldName: "Email",
+                DataverseFieldName: "emailaddress1",
+            },
+ 
         ];
+
 
         // Define the pagehide event listener
         const handlePageHide = (e) => {
-            if (!e.persisted) {
-                submitForm(form, mappings);
-            }
+             submitForm(form, mappings);
         };
 
         // Attach pagehide event listener
-        window.addEventListener("pagehide", handlePageHide);
+        window.addEventListener("unload", handlePageHide);
 
         // Remove pagehide event listener when navigation buttons are clicked
         $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
-            window.removeEventListener("pagehide", handlePageHide);
+            window.removeEventListener("unload", handlePageHide);
         });
         // Custom jQuery selector for case-insensitive text match
     jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
@@ -281,10 +358,45 @@ $(document).ready(function () {
         // Remove pagehide event when clicking specific links containing "prijava"
         $('a:icontains(prijava)').each((i, e) => {
             $(e).on("click", function () {
-                window.removeEventListener("pagehide", handlePageHide);
+                window.removeEventListener("unload", handlePageHide);
             });
         });
     });
 
+
+//     const handlePageHide = (e) => {
+//         if (!e.persisted) {
+//             submitForm(form, mappings);
+//         }
+//     };
+
+//     // Attach pagehide event listener
+//     window.addEventListener("pagehide", handlePageHide);
+
+//     // Remove pagehide event listener when navigation buttons are clicked
+//     $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
+//         window.removeEventListener("pagehide", handlePageHide);
+//     });
+//     // Custom jQuery selector for case-insensitive text match
+// jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
+//     return function (elem) {
+//         return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+//     };
+// });
+
+//     // Remove pagehide event when clicking specific links containing "prijava"
+//     $('a:icontains(prijava)').each((i, e) => {
+//         $(e).on("click", function () {
+//             window.removeEventListener("pagehide", handlePageHide);
+//         });
+//     });
+// });
+
     
 });
+
+
+
+
+//12312312312312312312312312312313123132123132123123123123123123123123
+
