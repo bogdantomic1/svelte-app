@@ -36,53 +36,44 @@
   } from "./store.js";
 
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("ovde sam");
-    console.log(window["msdynmkt"]);
-    console.log("trek skripta");
-    // MsCrmMkt.MsCrmFormLoader.on("formLoad", function(event) {
-    //   console.log(event);
-    //   console.log('form loaded');
-    // })
+    
+    function submitForm(form, mappings) {
+        const serializedForm = d365mktformcapture.serializeForm(form, mappings);
+        const payload = serializedForm.SerializedForm.build();
 
-    // MsCrmMkt.MsCrmFormLoader.on("formRender", function(event) {
-    //   console.log(event);
-    //   console.log('form redndered');
-    // })
+        const formedUrl =
+            "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
 
-    // function track_msdynmkt_testtrigger1_105503091() {
-    //   const email = document.getElementById("Email").value;
-    //   console.log("ovo je email", email);
-    //   window["msdynmkt"].setUser({ authId: email }); // ID, e-mail or phone number - see instructions
-    //   window["msdynmkt"].trackEvent({
-    //     name: "msdynmkt_testtrigger1_105503091", //Trigger title: testTrigger1
-    //     ingestionKey:
-    //       "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
-    //     version: "1.0.0",
-    //     // To learn more about the event properties below, please see the documentation on Special attributes for custom triggers.
-    //     properties: {
-    //       bindingid: "",
-    //       jobtitle: "Tomicc",
-    //       lastname: "Tomicc",
-    //     },
-    //   });
-    //   console.log("kraj triggera");
-    // }
+        if (document.getElementById("Email").value.trim() !== "") {
+            fetch(formedUrl, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8",
+                },
+                body: payload.data,
+                keepalive: true,
+            })
+                .then(() => {
+                    console.log("submission complete");
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        } else {
+            console.log("nema");
+            return;
+        }
+    }
 
-    d365mktformcapture
-      .waitForElement("#fakeFormTravel") // example: "#form1" as a selector for form with id="form1"
-      .then((form) => {
-        console.log("mapiranje");
-        console.log(form);
-        //newSubmit();
-
+    d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
         const mappings = [
             {
                 FormFieldName: "Packet",
                 DataverseFieldName: "cr697_package",
                 DataverseFieldValue: [
-                    { FormValue: "206450000", DataverseValue: "0" }, // A
-                    { FormValue: "206450001", DataverseValue: "1" }, // B
-                    { FormValue: "206450002", DataverseValue: "2" }, // C
+                    { FormValue: "206450000", DataverseValue: "0" },
+                    { FormValue: "206450001", DataverseValue: "1" },
+                    { FormValue: "206450002", DataverseValue: "2" },
                 ],
             },
             {
@@ -97,10 +88,6 @@
                 FormFieldName: "FirstName",
                 DataverseFieldName: "firstname",
             },
-            // {
-            //     FormFieldName: "LastName",
-            //     DataverseFieldName: "lastname",
-            // },
             {
                 FormFieldName: "LastName",
                 DataverseFieldName: "cr697_lastnamect",
@@ -109,121 +96,25 @@
                 FormFieldName: "LastName",
                 DataverseFieldName: "cr697_lastnameleadct",
             },
-
         ];
 
-        console.log(mappings);
-
-        window.addEventListener("pagehide", (e) => {
-          if (!e.persisted) {
-            const serializedForm = d365mktformcapture.serializeForm(
-              form,
-              mappings
-            );
-            console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
-            const payload = serializedForm.SerializedForm.build();
-            console.log(payload);
-
-            const captureConfig = {
-              FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
-              FormApiUrl:
-                "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
-            };
-            const formedUrl =
-              "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
-
-            // d365mktformcapture
-            //   .submitForm(captureConfig, payload)
-            //   .catch((e) => {
-            //     console.log(e);
-            //     console.log('Form submission failed');
-            //   });
-
-            if (document.getElementById("Email").value.trim() !== "") {
-              fetch(formedUrl, {
-                method: "post",
-                headers: {
-                  "Content-Type": "application/json;charset=UTF-8",
-                },
-                body: payload.data,
-                keepalive: true,
-              })
-                .then(() => {
-                  console.log("submission complete");
-                })
-                .catch((e) => {
-                  console.log(e);
-                  console.log("Form submission failed12312");
-                });
-              //track_msdynmkt_testtrigger1_105503091();
-              //navigator.sendBeacon(formedUrl, payload.data);
-            } else {
-              console.log("nema");
-              return;
+        // Define the pagehide event listener
+        const handlePageHide = (e) => {
+            if (!e.persisted) {
+                submitForm(form, mappings);
             }
-          }
+        };
 
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        });
+        // Attach pagehide event listener
+        window.addEventListener("pagehide", handlePageHide);
 
-        // form.addEventListener(
-        //   "submit",
-        //   (e) => {
-        //     e.preventDefault();
-        //     //newSubmit();
+        if(currentStep === 2){
+          console.log("ovde sam u step 2");
+          window.removeEventListener("pagehide", handlePageHide);
+        }
+    });
+    
 
-        //     const serializedForm = d365mktformcapture.serializeForm(
-        //       form,
-        //       mappings
-        //     );
-        //     console.log(JSON.stringify(serializedForm)); // NOTE: enable for debugging //https://cors-anywhere.herokuapp.com
-        //     const payload = serializedForm.SerializedForm.build();
-        //     console.log(payload);
-
-        //     const captureConfig = {
-        //       FormId: "dee03d17-94e7-ef11-9342-000d3aba33c2",
-        //       FormApiUrl:
-        //         "https://cors-anywhere.herokuapp.com/https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms",
-        //     };
-        //     const formedUrl =
-        //       "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/dee03d17-94e7-ef11-9342-000d3aba33c2";
-
-        //     // d365mktformcapture
-        //     //   .submitForm(captureConfig, payload)
-        //     //   .catch((e) => {
-        //     //     console.log(e);
-        //     //     console.log('Form submission failed');
-        //     //   });
-
-        //     if (document.getElementById("Email").value.trim() !== "") {
-        //       // fetch(formedUrl, {
-        //       //   method: "post",
-        //       //   headers: {
-        //       //     "Content-Type": "application/json;charset=UTF-8",
-        //       //   },
-        //       //   body: payload.data,
-        //       //   keepalive: true,
-        //       // }).then(() => {
-        //       //   console.log("submission complete");
-        //       // });
-        //       track_msdynmkt_testtrigger1_105503091();
-        //       // const blob = new Blob([payload.data], {
-        //       //   type: "text/plain",
-        //       // });
-
-        //       // navigator.sendBeacon(formedUrl, blob);
-        //     } else {
-        //       console.log("nema");
-        //       return;
-        //     }
-
-        //     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //   },
-        //   true
-        // );
-      });
-
-    console.log("na dnu mscrmmkt func");
   });
   console.log("izasaoa");
 
@@ -316,10 +207,7 @@
         </svg>STEP 1
       </a>
       <a
-        on:click={() =>  {
-          setStep(2);
-          window.onpagehide = null;
-          }}
+        on:click={() =>  setStep(2)}
         class="{$currentStep == 2
           ? active
           : notactive} sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider"
