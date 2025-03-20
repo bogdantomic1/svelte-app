@@ -107,6 +107,11 @@
 
         // Attach pagehide event listener
         window.addEventListener("pagehide", handlePageHide);
+        
+        function removePageHideListener() {
+          console.log("removing pagehide listener");
+          window.removeEventListener("pagehide", handlePageHide);
+        }
 
     });
     
@@ -150,10 +155,7 @@
     }
   };
 
-  function removePageHideListener() {
-    console.log("removing pagehide listener");
-    window.removeEventListener("pagehide", handlePageHide);
-  }
+ 
 
   let active = "bg-gray-100 border-red-500 text-red-500 rounded-t";
   let notactive = "border-gray-200 hover:text-gray-900";
