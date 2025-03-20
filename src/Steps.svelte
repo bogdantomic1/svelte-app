@@ -151,6 +151,7 @@
   };
 
   function removePageHideListener() {
+    console.log("removing pagehide listener");
     window.removeEventListener("pagehide", handlePageHide);
   }
 
@@ -225,7 +226,7 @@
         </svg>STEP 2
       </a>
       <a
-        on:click={() => setStep(3)}
+        on:click={() => {setStep(3); removePageHideListener();}}
         class="{$currentStep == 3
           ? active
           : notactive} sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider"
