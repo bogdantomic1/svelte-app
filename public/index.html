@@ -175,26 +175,13 @@
     
 
     <script>
-      // NOTE: for reference see https://go.microsoft.com/fwlink/?linkid=2250770
-
-      // function newSubmit() {
-      //   if (document.getElementById('Email').value.trim() === '') {
-      //     console.log('prazan mejl');
-      //     console.log(
-      //       document.getElementById('Email').value.trim(),
-      //       'ovo je trim',
-      //     );
-      //     console.log(document.getElementById('Email').value, 'ovo je value');
-      //   } else {
-      //     console.log(document.getElementById('Email').value.trim());
-      //     console.log(document.getElementById('Email').value);
-      //   }
-      // }
-
+    
 
       document.addEventListener("DOMContentLoaded", () => {
+
+        console.log("USAOOOOAOOAOAOAOOAO");
     
-    function submitForm(form, mappings) {
+        function submitForm(form, mappings) {
         const serializedForm = d365mktformcapture.serializeForm(form, mappings);
         const payload = serializedForm.SerializedForm.build();
 
@@ -216,15 +203,12 @@
                 .catch((e) => {
                     console.log(e);
                 });
-        } else {
-            console.log("nema");
-            return;
+        } else {console.log("nema");return;}
         }
-    }
 
     
 
-    d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
+        d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
         const mappings = [
             {
                 FormFieldName: "Packet",
@@ -267,24 +251,6 @@
         };
         // Attach pagehide event listener
         window.addEventListener("unload", handlePageHide);
-
-
-//  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
-//             window.removeEventListener("unload", handlePageHide);
-//         });
-//         // Custom jQuery selector for case-insensitive text match
-//     jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
-//         return function (elem) {
-//             return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-//         };
-//     });
-
-//         // Remove pagehide event when clicking specific links containing "prijava"
-//         $('a:icontains(prijava)').each((i, e) => {
-//             $(e).on("click", function () {
-//                 window.removeEventListener("unload", handlePageHide);
-//             });
-//         });
 
 
 
