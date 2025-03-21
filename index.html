@@ -172,8 +172,8 @@
     ></div> -->
 
     <script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
     
 
@@ -255,11 +255,31 @@
         // Attach pagehide event listener
         window.addEventListener("unload", handlePageHide);
 
-        $("div").click(function(){
-          console.log("clickckckckckckc");
-          $(this).hide();
-        });
-        
+        //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
+//             window.removeEventListener("unload", handlePageHide);
+//         });
+//         // Custom jQuery selector for case-insensitive text match
+//     jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
+//         return function (elem) {
+//             return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+//         };
+//     });
+
+//         // Remove pagehide event when clicking specific links containing "prijava"
+//         $('a:icontains(prijava)').each((i, e) => {
+//             $(e).on("click", function () {
+//                 window.removeEventListener("unload", handlePageHide);
+//             });
+//         });
+
+document.querySelectorAll("a").forEach((element) => {
+    element.addEventListener("click", () => {
+      console.log("skinuo event");
+        window.removeEventListener("unload", handlePageHide);
+    });
+});
+
+       
 
     });
     
