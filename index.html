@@ -189,7 +189,7 @@
         const formedUrl =
             "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
 
-        if (jquery('#Email').val()) { //document.getElementById("Email").value.trim() !== ""
+        if ($('#Email').val()) { //document.getElementById("Email").value.trim() !== ""
             fetch(formedUrl, {
                 method: "post",
                 headers: {
