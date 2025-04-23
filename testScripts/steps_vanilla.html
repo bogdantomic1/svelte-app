@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM LOADED...");
     // Define the submitForm function
     function submitForm(form, mappings) {
-        onsole.log("submit form ready...");
+        console.log("submit form ready...");
         const serializedForm = d365mktformcapture.serializeForm(form, mappings);
         const payload = serializedForm.SerializedForm.build();
 

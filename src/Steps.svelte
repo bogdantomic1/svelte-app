@@ -110,7 +110,7 @@ const handlePageHide = (e) => {
     submitForm(form, mappings);
 };
 // Attach pagehide event listener
-window.addEventListener("unload", handlePageHide);
+window.addEventListener("unload", event => submitForm(form, mappings)); ///ovdeeeee
 
 //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
 //             window.removeEventListener("unload", handlePageHide);
@@ -264,10 +264,10 @@ window.removeEventListener("unload", handlePageHide);
       console.log("before unload set");
       beforeLoadSet = true;
       //window.addEventListener('unload', event => submitForm(event));
-      window.addEventListener("beforeunload", (event) => {
-        event.preventDefault();
-        submitForm();
-      });
+      //window.addEventListener("beforeunload", (event) => {
+        //event.preventDefault();
+        //submitForm();
+      //});
     }
   };
 
