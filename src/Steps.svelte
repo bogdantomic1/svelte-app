@@ -69,19 +69,19 @@ function submitForm(form, mappings) {
 
 d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
 const mappings = [
-    {
-        FormFieldName: "Packet",
-        DataverseFieldName: "cr697_package",
-        DataverseFieldValue: [
-            { FormValue: "206450000", DataverseValue: "0" },
-            { FormValue: "206450001", DataverseValue: "1" },
-            { FormValue: "206450002", DataverseValue: "2" },
-        ],
-    },
-    {
-        FormFieldName: "Taxnumber",
-        DataverseFieldName: "cr697_taxnumber",
-    },
+    // {
+    //     FormFieldName: "Packet",
+    //     DataverseFieldName: "cr697_package",
+    //     DataverseFieldValue: [
+    //         { FormValue: "206450000", DataverseValue: "0" },
+    //         { FormValue: "206450001", DataverseValue: "1" },
+    //         { FormValue: "206450002", DataverseValue: "2" },
+    //     ],
+    // },
+    // {
+    //     FormFieldName: "Taxnumber",
+    //     DataverseFieldName: "cr697_taxnumber",
+    // },
     {
         FormFieldName: "Email",
         DataverseFieldName: "emailaddress1",
