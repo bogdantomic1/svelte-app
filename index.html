@@ -185,18 +185,14 @@
         console.log("USAOOOOAOOAOAOAOOAO");
     
         function submitForm(form, mappings) {
-        const serializedForm = d365mktformcapture.serializeForm(form, mappings);
-        const payload = serializedForm.SerializedForm.build();
+         const serializedForm = d365mktformcapture.serializeForm(form, mappings);
+         const payload = serializedForm.SerializedForm.build();
 
-        const formedUrl =
-            "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/9bc5e4fe-4bda-ef11-b8e4-000d3ab73d5f/landingpageforms/forms/6b886942-0904-f011-bae3-7c1e5220bcad";
+         const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
 
-        if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
+         if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
             fetch(formedUrl, {
                 method: "post",
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
-                },
                 body: payload.data,
                 keepalive: true,
             })
@@ -206,8 +202,9 @@
                 .catch((e) => {
                     console.log(e);
                 });
-        } else {console.log("nema");return;}
-        }
+          } 
+          else {console.log("nema");return;}
+       }
 
     
 
@@ -236,12 +233,12 @@
             },
             {
                 FormFieldName: "LastName",
-                DataverseFieldName: "cr697_lastnamect",
-            },
-            {
-                FormFieldName: "LastName",
-                DataverseFieldName: "cr697_lastnameleadct",
-            },
+                DataverseFieldName: "lastname",
+            }
+            // {
+            //     FormFieldName: "LastName",
+            //     DataverseFieldName: "cr697_lastnameleadct",
+            // },
         ];
 
         // Define the pagehide event listener
