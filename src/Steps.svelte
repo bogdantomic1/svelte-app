@@ -145,12 +145,22 @@ window.removeEventListener("unload", handlePageHide);
 
 
 
-  function formSubmition(event) {
-    event.preventDefault();
-    console.log("form submited1");
-    document.getElementById("fakeFormTravel").submit();
-    console.log("form submited");
-  }
+function formSubmition(event) {
+  event.preventDefault();
+  console.log("form submited1");
+
+  d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
+    const mappings = [
+      { FormFieldName: "Email", DataverseFieldName: "emailaddress1" },
+      { FormFieldName: "FirstName", DataverseFieldName: "firstname" },
+      { FormFieldName: "LastName", DataverseFieldName: "lastname" }
+    ];
+
+    submitForm(form, mappings); // 🔥 run your custom submission logic
+  });
+
+  console.log("form submited");
+}
 
   let count_value;
 

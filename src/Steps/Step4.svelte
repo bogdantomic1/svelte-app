@@ -48,9 +48,7 @@
   // });
 
   function sayHi() {
-    e.preventDefault();
     dispatch('userSubmit')
-    
     console.log("hi");
   }
 </script>
