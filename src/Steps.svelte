@@ -110,7 +110,7 @@ const handlePageHide = (e) => {
     submitForm(form, mappings);
 };
 // Attach pagehide event listener
- form.addEventListener("submit", event => submitForm(form, mappings)); ///ovdeeeee
+ form.addEventListener("submit", event =>{  event.preventDefault(); submitForm(form, mappings)}); ///ovdeeeee
 
 //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
 //             window.removeEventListener("unload", handlePageHide);
@@ -146,7 +146,6 @@ window.removeEventListener("unload", handlePageHide);
 
 
   function formSubmition(event) {
-
     event.preventDefault();
     console.log("form submited1");
     document.getElementById("fakeFormTravel").submit();
