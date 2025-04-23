@@ -156,7 +156,26 @@ function formSubmition(event) {
       { FormFieldName: "LastName", DataverseFieldName: "lastname" }
     ];
 
-    submitForm(form, mappings); // 🔥 run your custom submission logic
+    const serializedForm = d365mktformcapture.serializeForm(form, mappings);
+ const payload = serializedForm.SerializedForm.build();
+
+ const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
+
+ if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
+ console.log("fetching");   
+ fetch(formedUrl, {
+        method: "post",
+        body: payload.data,
+        keepalive: true,
+    })
+        .then(() => {
+            console.log("submission complete");
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+  } 
+  else {console.log("nema");return;}
   });
 
   console.log("form submited");
