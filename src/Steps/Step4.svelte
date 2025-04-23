@@ -20,6 +20,9 @@
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
 
+  const dispatch = createEventDispatcher()
+
+
   // onMount(() => {
   //   console.log("Component is fully loaded!");
 
@@ -45,6 +48,7 @@
   // });
 
   function sayHi() {
+    dispatch('userSubmit')
     console.log("hi");
   }
 </script>
