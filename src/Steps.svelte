@@ -49,7 +49,8 @@ function submitForm(form, mappings) {
  const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
 
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
-    fetch(formedUrl, {
+ console.log("fetching");   
+ fetch(formedUrl, {
         method: "post",
         body: payload.data,
         keepalive: true,
@@ -105,6 +106,7 @@ const handlePageHide = (e) => {
     // if (!e.persisted) {
     //     submitForm(form, mappings);
     // }
+    console.log("pagehide event triggered");
     submitForm(form, mappings);
 };
 // Attach pagehide event listener
