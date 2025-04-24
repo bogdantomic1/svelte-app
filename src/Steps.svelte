@@ -52,9 +52,9 @@ function submitForm(form, mappings) {
  console.log("fetching");   
  fetch(formedUrl, {
         method: "post",
-        headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
-                },
+        //headers: {
+        //            "Content-Type": "application/json;charset=UTF-8",
+        //        },
         body: payload.data,
         keepalive: true,
     })
