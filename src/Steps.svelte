@@ -59,9 +59,9 @@ console.log("Payload size (bytes):", sizeInBytes);
  fetch(formedUrl, {
         method: "post",
         headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "application/json",
                 },
-        body: new FormData(document.getElementById("fakeFormTravel")),
+        body: payload.data,
         keepalive: true,
     })
         .then(() => {
