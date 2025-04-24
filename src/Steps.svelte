@@ -117,6 +117,10 @@ const mappings = [
         FormFieldName: "LastName",
         DataverseFieldName: "ct_lastnamect",
     },
+    {
+        FormFieldName: "PhoneNumber",
+        DataverseFieldName: "in2_input_mobile_phone",
+    },
     // {
     //     FormFieldName: "FirstName",
     //     DataverseFieldName: "ct_firstnamect",
