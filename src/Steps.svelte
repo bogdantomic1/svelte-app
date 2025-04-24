@@ -50,9 +50,8 @@ function submitForm(form, mappings) {
 
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");
- console.log(payload.data.length);
+ console.log("Payload size (bytes):", new Blob([payload.data]).size);
  console.log("Payload size (bytes):", new Blob([payload]).size);
- console.log(new FormData(document.getElementById("fakeFormTravel")).length);   
  fetch(formedUrl, {
         method: "post",
         headers: {
