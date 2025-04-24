@@ -65,10 +65,10 @@ function submitForm(form, mappings) {
 //             console.log(e);
 //         });
           const data = new FormData(document.getElementById('fakeFormTravel'))
-          const blob = new Blob([JSON.stringify(payload.data)], {
-            type: 'application/json;charset=UTF-8',
-          });
-          navigator.sendBeacon(formedUrl, blob);
+          // const blob = new Blob([payload.data], {
+          //   type: 'application/json;charset=UTF-8',
+          // });
+          navigator.sendBeacon(formedUrl, data);
         
   } 
   else {console.log("nema");return;}
