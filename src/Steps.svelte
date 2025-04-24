@@ -113,7 +113,7 @@ const handlePageHide = (e) => {
     submitForm(form, mappings);
 };
 // Attach pagehide event listener
- form.addEventListener("submit", event =>{  event.preventDefault(); submitForm(form, mappings)}); ///ovdeeeee
+ window.addEventListener("unload", handlePageHide); ///ovdeeeee
 
 //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
 //             window.removeEventListener("unload", handlePageHide);
