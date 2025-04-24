@@ -55,7 +55,7 @@ function submitForm(form, mappings) {
         headers: {
                     "Content-Type": "application/json;charset=UTF-8",
                 },
-        body: payload.data,
+        body: JSON.stringify(payload.data),
         keepalive: true,
     })
         .then(() => {
