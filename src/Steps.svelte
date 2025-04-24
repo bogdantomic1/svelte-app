@@ -114,6 +114,10 @@ const mappings = [
         DataverseFieldName: "ct_emailct",
     },
     {
+        FormFieldName: "FirstName",
+        DataverseFieldName: "ct_firstnamect",
+    },
+    {
         FormFieldName: "LastName",
         DataverseFieldName: "ct_lastnamect",
     },
