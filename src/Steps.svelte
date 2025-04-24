@@ -50,7 +50,7 @@ function submitForm(form, mappings) {
 
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");
- console.log(payload.data);
+ console.log(payload.data.length);
  console.log(payload);   
  fetch(formedUrl, {
         method: "post",
