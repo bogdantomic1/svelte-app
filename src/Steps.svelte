@@ -68,7 +68,7 @@ function submitForm(form, mappings) {
            const blob = new Blob([payload.data], {
              type: 'application/json;charset=UTF-8',
            });
-          navigator.sendBeacon(formedUrl, data);
+          navigator.sendBeacon(formedUrl, blob);
         
   } 
   else {console.log("nema");return;}
