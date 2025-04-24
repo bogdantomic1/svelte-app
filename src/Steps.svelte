@@ -55,9 +55,9 @@ function submitForm(form, mappings) {
  fetch(formedUrl, {
         method: "post",
         headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "multipart/form-data",
                 },
-        body: payload.data,
+        body: new FormData(document.getElementById("fakeFormTravel")),
         keepalive: true,
     })
         .then(() => {
