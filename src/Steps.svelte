@@ -64,10 +64,10 @@ function submitForm(form, mappings) {
 //         .catch((e) => {
 //             console.log(e);
 //         });
-          const data = new FormData(document.getElementById('fakeFormTravel'))
-          // const blob = new Blob([payload.data], {
-          //   type: 'application/json;charset=UTF-8',
-          // });
+          //const data = new FormData(document.getElementById('fakeFormTravel'))
+           const blob = new Blob([payload.data], {
+             type: 'application/json;charset=UTF-8',
+           });
           navigator.sendBeacon(formedUrl, data);
         
   } 
