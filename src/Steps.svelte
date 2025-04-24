@@ -63,6 +63,9 @@ function submitForm(form, mappings) {
         })
         .catch((e) => {
             console.log(e);
+        })
+        .finnally(() => {
+            console.log("finally");
         });
   } 
   else {console.log("nema");return;}
