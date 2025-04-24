@@ -55,7 +55,7 @@ function submitForm(form, mappings) {
  fetch(formedUrl, {
         method: "post",
         headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
+                    "Content-Type": "application/json",
                 },
         body: payload.data,
         keepalive: true,
