@@ -148,37 +148,18 @@ window.removeEventListener("unload", handlePageHide);
 function formSubmition(event) {
   event.preventDefault();
   console.log("form submited1");
+  let form = document.getElementById("fakeFormTravel");
+  if (form) {
+         let event = new Event("submit", { bubbles: true, cancelable: true });
+         form.dispatchEvent(event);
+         console.log("Submit event dispatched!");
+     } else {
+         console.error("Form not found!");
+     }
 
-  d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
-    const mappings = [
-      { FormFieldName: "Email", DataverseFieldName: "emailaddress1" },
-      { FormFieldName: "FirstName", DataverseFieldName: "firstname" },
-      { FormFieldName: "LastName", DataverseFieldName: "lastname" }
-    ];
+ 
 
-    const serializedForm = d365mktformcapture.serializeForm(form, mappings);
- const payload = serializedForm.SerializedForm.build();
-
- const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
-
- if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
- console.log("fetching");   
- fetch(formedUrl, {
-        method: "post",
-        body: payload.data,
-        keepalive: true,
-    })
-        .then(() => {
-            console.log("submission complete");
-        })
-        .catch((e) => {
-            console.log(e);
-        });
-  } 
-  else {console.log("nema");return;}
-  });
-
-  console.log("form submited");
+  console.log("form ended");
 }
 
   let count_value;
