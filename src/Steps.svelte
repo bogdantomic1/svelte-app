@@ -64,7 +64,7 @@ function submitForm(form, mappings) {
 //         .catch((e) => {
 //             console.log(e);
 //         });
-          const data = new FormData(document.getElementById('fakeFormPet'))
+          const data = new FormData(document.getElementById('fakeFormTravel'))
           const blob = new Blob([JSON.stringify(payload.data)], {
             type: 'application/json;charset=UTF-8',
           });
