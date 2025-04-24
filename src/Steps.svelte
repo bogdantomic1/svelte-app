@@ -52,6 +52,10 @@ function submitForm(form, mappings) {
  console.log("fetching");
  console.log("Payload size (bytes):", new Blob([payload.data]).size);
  console.log("Payload size (bytes):", new Blob([payload]).size);
+
+ const encoder = new TextEncoder();
+const sizeInBytes = encoder.encode(payload.data).length;
+console.log("Payload size (bytes):", sizeInBytes);
  fetch(formedUrl, {
         method: "post",
         headers: {
