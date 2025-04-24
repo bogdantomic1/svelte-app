@@ -50,23 +50,26 @@ function submitForm(form, mappings) {
 
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");   
- fetch(formedUrl, {
-        method: "post",
-        headers: {
-                    "Content-Type": "application/json;charset=UTF-8",
-                },
-        body: payload.data,
-        keepalive: true,
-    })
-        .then(() => {
-            console.log("submission complete");
-        })
-        .catch((e) => {
-            console.log(e);
-        })
-        .finnally(() => {
-            console.log("finally");
-        });
+//  fetch(formedUrl, {
+//         method: "post",
+//         headers: {
+//                     "Content-Type": "application/json;charset=UTF-8",
+//                 },
+//         body: payload.data,
+//         keepalive: true,
+//     })
+//         .then(() => {
+//             console.log("submission complete");
+//         })
+//         .catch((e) => {
+//             console.log(e);
+//         });
+          const data = new FormData(document.getElementById('fakeFormPet'))
+          const blob = new Blob([JSON.stringify(payload.data)], {
+            type: 'application/json;charset=UTF-8',
+          });
+          navigator.sendBeacon(formedUrl, blob);
+        
   } 
   else {console.log("nema");return;}
 }
