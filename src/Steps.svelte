@@ -56,25 +56,25 @@ function submitForm(form, mappings) {
  const encoder = new TextEncoder();
 const sizeInBytes = encoder.encode(payload.data).length;
 console.log("Payload size (bytes):", sizeInBytes);
- fetch(formedUrl, {
-        method: "post",
-        headers: {
-                    "Content-Type": "application/json",
-                },
-        body: payload.data,
-        keepalive: true,
-    })
-        .then(() => {
-            console.log("submission complete");
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+//  fetch(formedUrl, {
+//         method: "post",
+//         headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//         body: payload.data,
+//         keepalive: true,
+//     })
+//         .then(() => {
+//             console.log("submission complete");
+//         })
+//         .catch((e) => {
+//             console.log(e);
+//         });
           //const data = new FormData(document.getElementById('fakeFormTravel'))
-          //  const blob = new Blob([payload.data], {
-          //    type: 'application/json;charset=UTF-8',
-          //  });
-          // navigator.sendBeacon(formedUrl, blob);
+           const blob = new Blob([payload.data], {
+             type: 'application/json;charset=UTF-8',
+           });
+          navigator.sendBeacon(formedUrl, blob);
         
   } 
   else {console.log("nema");return;}
