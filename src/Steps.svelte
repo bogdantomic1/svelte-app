@@ -50,26 +50,20 @@ function submitForm(form, mappings) {
 
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");
- console.log("Payload size (bytes):", new Blob([payload.data]).size);
- console.log("Payload size (bytes):", new Blob([payload]).size);
-
- const encoder = new TextEncoder();
-const sizeInBytes = encoder.encode(payload.data).length;
-console.log("Payload size (bytes):", sizeInBytes);
- fetch(formedUrl, {
-        method: "post",
-        headers: {
-                    "Content-Type": "application/json",
-                },
-        body: payload.data,
-        keepalive: true,
-    })
-        .then(() => {
-            console.log("submission complete");
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+//  fetch(formedUrl, {
+//         method: "post",
+//         headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//         body: payload.data,
+//         keepalive: true,
+//     })
+//         .then(() => {
+//             console.log("submission complete");
+//         })
+//         .catch((e) => {
+//             console.log(e);
+//         });
           //const data = new FormData(document.getElementById('fakeFormTravel'))
           //  const blob = new Blob([payload.data], {
           //    type: 'application/json;charset=UTF-8',
