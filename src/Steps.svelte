@@ -46,8 +46,8 @@ function submitForm(form, mappings) {
  const serializedForm = d365mktformcapture.serializeForm(form, mappings);
  const payload = serializedForm.SerializedForm.build();
 
- //const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
- const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
+ const formedUrl = "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a"
+ //const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");
 //  fetch(formedUrl, {
