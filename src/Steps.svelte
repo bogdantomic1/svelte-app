@@ -76,6 +76,17 @@ console.log("Payload size (bytes):", sizeInBytes);
           //  });
           // navigator.sendBeacon(formedUrl, blob);
         
+          const blob = new Blob([JSON.stringify(payload.data)], {
+              type: 'application/json'
+          });
+
+          const success = navigator.sendBeacon(formedUrl, blob);
+
+          if (success) {
+            console.log("✅ sendBeacon request queued successfully");
+          } else {
+            console.error("❌ sendBeacon failed to queue");
+          }
   } 
   else {console.log("nema");return;}
 }
