@@ -50,37 +50,33 @@ function submitForm(form, mappings) {
  //const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
  if (document.getElementById("Email")?.value.trim() !== "") { //document.getElementById("Email").value.trim() !== ""
  console.log("fetching");
-//  fetch(formedUrl, {
-//         method: "post",
-//         headers: {
-//                     "Content-Type": "application/json",
-//                 },
-//         body: payload.data,
-//         keepalive: true,
-//     })
-//         .then(() => {
-//             console.log("submission complete");
-//         })
-//         .catch((e) => {
-//             console.log(e);
-//         });
-          //const data = new FormData(document.getElementById('fakeFormTravel'))
-          //  const blob = new Blob([payload.data], {
-          //    type: 'application/json;charset=UTF-8',
-          //  });
-          // navigator.sendBeacon(formedUrl, blob);
+ fetch(formedUrl, {
+        method: "post",
+        headers: {
+                    "Content-Type": "application/json",
+                },
+        body: payload.data,
+        keepalive: true,
+    })
+        .then(() => {
+            console.log("submission complete");
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+         
         
-          const blob = new Blob([JSON.stringify(payload.data)], {
-              type: 'application/json'
-          });
+          // const blob = new Blob([JSON.stringify(payload.data)], {
+          //     type: 'application/json'
+          // });
 
-          const success = navigator.sendBeacon(formedUrl, blob);
+          // const success = navigator.sendBeacon(formedUrl, blob);
 
-          if (success) {
-            console.log("✅ sendBeacon request queued successfully");
-          } else {
-            console.error("❌ sendBeacon failed to queue");
-          }
+          // if (success) {
+          //   console.log("✅ sendBeacon request queued successfully");
+          // } else {
+          //   console.error("❌ sendBeacon failed to queue");
+          // }
   } 
   else {console.log("nema");return;}
 }
