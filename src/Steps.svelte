@@ -61,7 +61,7 @@ console.log("Payload size (bytes):", sizeInBytes);
         // headers: {
         //             "Content-Type": "application/json",
         //         },
-        body: payload.data,
+        body: payload,
         keepalive: true,
     })
         .then(() => {
