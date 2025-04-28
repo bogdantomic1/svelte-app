@@ -58,10 +58,10 @@ const sizeInBytes = encoder.encode(payload.data).length;
 console.log("Payload size (bytes):", sizeInBytes);
  fetch(formedUrl, {
         method: "post",
-        // headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        body: payload,
+        headers: {
+                    "Content-Type": "application/json",
+                },
+        body: payload.data,
         keepalive: true,
     })
         .then(() => {
