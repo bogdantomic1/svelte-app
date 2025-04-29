@@ -143,11 +143,14 @@ const handlePageHide = (e) => {
     //     submitForm(form, mappings);
     // }
     console.log("pagehide event triggered");``
-    submitForm(form, mappings);
+    //submitForm(form, mappings);
+    if (!e.persisted) {
+            submitForm(form, mappings);
+        }
 };
 // Attach pagehide event listener
- window.addEventListener("unload", handlePageHide); ///ovdeeeee
-form.addEventListener("submit", handlePageHide);
+ window.addEventListener("pagehide", handlePageHide); ///ovdeeeee unload
+ form.addEventListener("submit", handlePageHide);
 //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
 //             window.removeEventListener("unload", handlePageHide);
 //         });
