@@ -147,15 +147,16 @@
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           console.log('hidden event triggered')
+          submitForm(form, mappings)
         } else {
           console.log('visible event triggered')
         }
       })
 
       //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
-      window.addEventListener('unload', () => {
-        submitForm(form, mappings)
-      })
+      // window.addEventListener('unload', () => {
+      //   submitForm(form, mappings)
+      // })
       form.addEventListener('submit', handlePageHide)
       //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
       //             window.removeEventListener("unload", handlePageHide);
