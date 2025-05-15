@@ -41,6 +41,15 @@
     const agent = navigator.userAgent
     console.log(document.getElementById('Email')?.value.trim() !== '')
     console.log(agent)
+
+    function isMobile() {
+      if (navigator.userAgentData) {
+        return navigator.userAgentData.mobile
+      }
+      // Fallback for older browsers
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    }
+    console.log('mobile?', isMobile())
     function submitForm(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
@@ -136,25 +145,28 @@
       // Define the pagehide event listener
 
       const handlePageHide = (e) => {
-        // if (!e.persisted) {
-        //     submitForm(form, mappings);
-        // }
         //console.log('pagehide event triggered')
         //submitForm(form, mappings)
-        // if (!e.persisted) {
-        //   submitForm(form, mappings)
-        // }
+        if (!e.persisted) {
+          submitForm(form, mappings)
+        }
+      }
+
+      const handleVisibilityChange = (e) => {
         if (document.hidden) {
-          console.log('hidden event triggered')
           submitForm(form, mappings)
         } else {
           console.log('visible event triggered')
         }
       }
 
-      // Attach pagehide event listener
+      if (isMobile()) {
+        document.addEventListener('visibilitychange', handleVisibilityChange)
+      } else {
+        window.addEventListener('pagehide', handlePageHide)
+      }
 
-      document.addEventListener('visibilitychange', handlePageHide)
+      // Attach pagehide event listener
 
       //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
       // window.addEventListener('unload', () => {
@@ -182,7 +194,15 @@
         element.addEventListener('click', () => {
           console.log('skinuo event')
           //window.removeEventListener('unload', handlePageHide)
-          document.removeEventListener('visibilitychange', handlePageHide)
+          //document.removeEventListener('visibilitychange', handlePageHide)
+          if (isMobile()) {
+            document.removeEventListener(
+              'visibilitychange',
+              handleVisibilityChange,
+            )
+          } else {
+            window.removeEventListener('pagehide', handlePageHide)
+          }
         })
       })
     })
