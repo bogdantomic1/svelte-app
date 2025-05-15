@@ -163,8 +163,8 @@
       if (isMobile()) {
         document.addEventListener('visibilitychange', handleVisibilityChange)
       } else {
-        //window.addEventListener('unload', handlePageHide)
-        document.addEventListener('visibilitychange', handleVisibilityChange)
+        window.addEventListener('unload', handlePageHide)
+        //document.addEventListener('visibilitychange', handleVisibilityChange)
       }
 
       // Attach pagehide event listener
@@ -202,11 +202,11 @@
               handleVisibilityChange,
             )
           } else {
-            //window.removeEventListener('unload', handlePageHide)
-            document.removeEventListener(
-              'visibilitychange',
-              handleVisibilityChange,
-            )
+            window.removeEventListener('unload', handlePageHide)
+            // document.removeEventListener(
+            //   'visibilitychange',
+            //   handleVisibilityChange,
+            // )
           }
         })
       })
