@@ -144,6 +144,14 @@
 
       // Attach pagehide event listener
 
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          console.log('hidden event triggered')
+        } else {
+          console.log('visible event triggered')
+        }
+      })
+
       //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
       window.addEventListener('unload', () => {
         submitForm(form, mappings)
