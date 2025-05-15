@@ -135,23 +135,22 @@
         // if (!e.persisted) {
         //     submitForm(form, mappings);
         // }
-        console.log('pagehide event triggered')
-        submitForm(form, mappings)
+        //console.log('pagehide event triggered')
+        //submitForm(form, mappings)
         // if (!e.persisted) {
         //   submitForm(form, mappings)
         // }
-      }
-
-      // Attach pagehide event listener
-
-      document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           console.log('hidden event triggered')
           submitForm(form, mappings)
         } else {
           console.log('visible event triggered')
         }
-      })
+      }
+
+      // Attach pagehide event listener
+
+      document.addEventListener('visibilitychange', handlePageHide)
 
       //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
       // window.addEventListener('unload', () => {
@@ -178,7 +177,8 @@
       document.querySelectorAll('a').forEach((element) => {
         element.addEventListener('click', () => {
           console.log('skinuo event')
-          window.removeEventListener('unload', handlePageHide)
+          //window.removeEventListener('unload', handlePageHide)
+          document.removeEventListener('visibilitychange', handlePageHide)
         })
       })
     })
