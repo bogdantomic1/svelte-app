@@ -163,7 +163,8 @@
       if (isMobile()) {
         document.addEventListener('visibilitychange', handleVisibilityChange)
       } else {
-        window.addEventListener('unload', handlePageHide)
+        //window.addEventListener('unload', handlePageHide)
+        document.addEventListener('visibilitychange', handleVisibilityChange)
       }
 
       // Attach pagehide event listener
@@ -201,7 +202,11 @@
               handleVisibilityChange,
             )
           } else {
-            window.removeEventListener('unload', handlePageHide)
+            //window.removeEventListener('unload', handlePageHide)
+            document.removeEventListener(
+              'visibilitychange',
+              handleVisibilityChange,
+            )
           }
         })
       })
