@@ -144,7 +144,10 @@
 
       // Attach pagehide event listener
 
-      window.addEventListener('unload', handlePageHide) //ovdeeeee unload
+      //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
+      window.addEventListener('unload', () => {
+        submitForm(form, mappings)
+      })
       form.addEventListener('submit', handlePageHide)
       //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
       //             window.removeEventListener("unload", handlePageHide);
