@@ -315,7 +315,7 @@
         >
           <circle cx="12" cy="5" r="3"></circle>
           <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
-        </svg>{agent}
+        </svg>STEP 3
       </a>
       <a
         on:click={() => setStep(4)}
