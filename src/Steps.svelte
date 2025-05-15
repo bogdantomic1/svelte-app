@@ -146,10 +146,10 @@
 
       const handlePageHide = (e) => {
         //console.log('pagehide event triggered')
-        //submitForm(form, mappings)
-        if (!e.persisted) {
-          submitForm(form, mappings)
-        }
+        submitForm(form, mappings)
+        // if (!e.persisted) {
+        //   submitForm(form, mappings)
+        // }
       }
 
       const handleVisibilityChange = (e) => {
@@ -163,7 +163,7 @@
       if (isMobile()) {
         document.addEventListener('visibilitychange', handleVisibilityChange)
       } else {
-        window.addEventListener('pagehide', handlePageHide)
+        window.addEventListener('unload', handlePageHide)
       }
 
       // Attach pagehide event listener
@@ -201,7 +201,7 @@
               handleVisibilityChange,
             )
           } else {
-            window.removeEventListener('pagehide', handlePageHide)
+            window.removeEventListener('unload', handlePageHide)
           }
         })
       })
