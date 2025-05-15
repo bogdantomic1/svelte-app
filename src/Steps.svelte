@@ -38,6 +38,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     console.log('USAOOOOAOOAOAOAOOAO steps')
+    console.log(document.getElementById('Email')?.value.trim() !== '')
     function submitForm(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
@@ -77,6 +78,7 @@
       }
     }
     d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+      console.log(form)
       const mappings = [
         // {
         //     FormFieldName: "Packet",
