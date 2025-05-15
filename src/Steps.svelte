@@ -38,7 +38,9 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     console.log('USAOOOOAOOAOAOAOOAO steps')
+    const agent = navigator.userAgent
     console.log(document.getElementById('Email')?.value.trim() !== '')
+    console.log(agent)
     function submitForm(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
@@ -313,7 +315,7 @@
         >
           <circle cx="12" cy="5" r="3"></circle>
           <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
-        </svg>STEP 3
+        </svg>{agent}
       </a>
       <a
         on:click={() => setStep(4)}
