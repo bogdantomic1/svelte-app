@@ -1,41 +1,47 @@
-<script src='https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js'></script>
+<script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
 <script>
-    (function (a, t, i) { var e = "MSEI"; var s = "Analytics"; var o = e + "queue"; a[o] = a[o] || []; var r = a[e] || function (n) { var t = {}; t[s] = {}; function e(e) { while (e.length) { var r = e.pop(); t[s][r] = function (e) { return function () { a[o].push([e, n, arguments]) } }(r) } } var r = "track"; var i = "set"; e([r + "Event", r + "View", r + "Action", i + "Property", i + "User", "initialize", "teardown"]); return t }(i.name); var n = i.name; if (!a[e]) { a[n] = r[s]; a[o].push(["new", n]); setTimeout(function () { var e = "script"; var r = t.createElement(e); r.async = 1; r.src = i.src; var n = t.getElementsByTagName(e)[0]; n.parentNode.insertBefore(r, n) }, 1) } else { a[n] = new r[s] } if (i.user) { a[n].setUser(i.user) } if (i.props) { for (var c in i.props) { a[n].setProperty(c, i.props[c]) } } a[n].initialize(i.cfg) })(window, document, {
-         src: "https://download.pi.dynamics.com/sdk/web/msei-0.js",
-         name: "msdynmkt",
-         cfg: {
-             ingestionKey:"c5eb70d46f704ec2a29bd75d30423e1a-2b4924c6-64f1-4752-b2b7-caf7ee263843-7455"
-         }
-     });
-</script>
+  $(document).ready(function () {
+    function submitForm(form, mappings) {
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250'
 
+      const emailValue = document.getElementById('Email')?.value.trim()
+      const firstNameValue = document.getElementById('FirstName')?.value.trim()
+      const lastNameValue = document.getElementById('LastName')?.value.trim()
 
-<script>
-$(document).ready(function(){
-    function track_msdynmkt_exittriggertravelinsurancertm_084429857(emailField) {
-        console.log("Email:", emailField);
-        console.log("inside of trigger");
-        window["msdynmkt"].setUser({ authId: emailField});   // ID, e-mail or phone number - see instructions
-        window["msdynmkt"].trackEvent({
-            name: "msdynmkt_exittriggertravelinsurancertm_084429857", //Trigger title: Exit Trigger Travel Insurance RTM
-            ingestionKey : "c5eb70d46f704ec2a29bd75d30423e1a-2b4924c6-64f1-4752-b2b7-caf7ee263843-7455",
-            version: "1.0.0" ,
-        properties: {
-         "bindingid" : emailField
-        }
-        });
-        console.log("outter trigger");
+      if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
+        console.log('fetching')
+
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        console.log('nema')
+        return
+      }
     }
-    if( $('#Email').val() ) {
-        console.log("Email:", $('#Email').val());
-        track_msdynmkt_exittriggertravelinsurancertm_084429857($('#Email').val());
-    }
-  });
+
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+      const mappings = [
+        { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
+        { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
+        { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+      ]
+
+      submitForm(form, mappings)
+    })
+  })
 </script>
-
- 
-
-
-
-  
-  

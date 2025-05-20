@@ -12,7 +12,7 @@
       const formedUrl =
         'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/18b8aa0f-8705-f011-bae2-6045bd8fc0e2'
 
-      if ($('#Email').val() && $('#FirstName').val() && $('#LastName').val()) {
+      if ($('#Email').val()) {
         console.log('fetching...')
         fetch(formedUrl, {
           method: 'post',
@@ -145,8 +145,39 @@
           DataverseFieldName: 'emailaddress1',
         },
       ]
+      // Define the pagehide event listener
+      const handlePageHide = (e) => {
+        submitForm(form, mappings)
+      }
 
-      submitForm(form, mappings)
+      // Attach pagehide event listener
+      window.addEventListener('unload', handlePageHide)
+      console.log('added evlistener')
+
+      // Remove pagehide event listener when navigation buttons are clicked
+      $('ul.stepsIndicator a, button.btn-next, a.btn-prev').on(
+        'click',
+        function () {
+          console.log('remove event1')
+          window.removeEventListener('unload', handlePageHide)
+        },
+      )
+      // Custom jQuery selector for case-insensitive text match
+      jQuery.expr[':'].icontains = jQuery.expr.createPseudo(function (arg) {
+        return function (elem) {
+          return (
+            jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0
+          )
+        }
+      })
+
+      // Remove pagehide event when clicking specific links containing "prijava"
+      $('a:icontains(prijava)').each((i, e) => {
+        $(e).on('click', function () {
+          console.log('remove event2')
+          window.removeEventListener('unload', handlePageHide)
+        })
+      })
     })
   })
 </script>

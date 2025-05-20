@@ -38,179 +38,73 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     console.log('USAOOOOAOOAOAOAOOAO steps')
-    const agent = navigator.userAgent
-    console.log(document.getElementById('Email')?.value.trim() !== '')
-    console.log(agent)
+    // function submitForm(form, mappings) {
+    //   const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+    //   const payload = serializedForm.SerializedForm.build()
+    //   const formedUrl =
+    //     'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a'
+    //   //const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
+    //   if (
+    //     document.getElementById('Email')?.value.trim() !== '' &&
+    //     document.getElementById('FirstName')?.value.trim() !== '' &&
+    //     document.getElementById('LastName')?.value.trim() !== ''
+    //   ) {
+    //     //document.getElementById("Email").value.trim() !== ""
+    //     console.log('fetching')
+    //     fetch(formedUrl, {
+    //       method: 'post',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: payload.data,
+    //       keepalive: true,
+    //     })
+    //       .then(() => {
+    //         console.log('submission complete')
+    //       })
+    //       .catch((e) => {
+    //         console.log(e)
+    //       })
+    //   } else {
+    //     console.log('nema')
+    //     return
+    //   }
+    // }
+    // d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+    //   console.log(form)
+    //   const mappings = [
+    //     {
+    //       FormFieldName: 'Email',
+    //       DataverseFieldName: 'emailaddress1',
+    //     },
+    //     {
+    //       FormFieldName: 'FirstName',
+    //       DataverseFieldName: 'firstname',
+    //     },
+    //     {
+    //       FormFieldName: 'LastName',
+    //       DataverseFieldName: 'lastname',
+    //     },
+    //     {
+    //       FormFieldName: 'Email',
+    //       DataverseFieldName: 'ct_emailct',
+    //     },
+    //     {
+    //       FormFieldName: 'FirstName',
+    //       DataverseFieldName: 'ct_firstnamect',
+    //     },
+    //     {
+    //       FormFieldName: 'LastName',
+    //       DataverseFieldName: 'ct_lastnamect',
+    //     },
+    //     {
+    //       FormFieldName: 'PhoneNumber',
+    //       DataverseFieldName: 'in2_input_mobile_phone',
+    //     },
+    //   ]
 
-    function isMobile() {
-      if (navigator.userAgentData) {
-        return navigator.userAgentData.mobile
-      }
-      // Fallback for older browsers
-      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    }
-    console.log('mobile?', isMobile())
-    function submitForm(form, mappings) {
-      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
-      const payload = serializedForm.SerializedForm.build()
-      const formedUrl =
-        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a'
-      //const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
-      if (document.getElementById('Email')?.value.trim() !== '') {
-        //document.getElementById("Email").value.trim() !== ""
-        console.log('fetching')
-        fetch(formedUrl, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: payload.data,
-          keepalive: true,
-        })
-          .then(() => {
-            console.log('submission complete')
-          })
-          .catch((e) => {
-            console.log(e)
-          })
-
-        // const blob = new Blob([JSON.stringify(payload.data)], {
-        //     type: 'application/json'
-        // });
-        // const success = navigator.sendBeacon(formedUrl, blob);
-        // if (success) {
-        //   console.log("✅ sendBeacon request queued successfully");
-        // } else {
-        //   console.error("❌ sendBeacon failed to queue");
-        // }
-      } else {
-        console.log('nema')
-        return
-      }
-    }
-    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
-      console.log(form)
-      const mappings = [
-        // {
-        //     FormFieldName: "Packet",
-        //     DataverseFieldName: "cr697_package",
-        //     DataverseFieldValue: [
-        //         { FormValue: "206450000", DataverseValue: "0" },
-        //         { FormValue: "206450001", DataverseValue: "1" },
-        //         { FormValue: "206450002", DataverseValue: "2" },
-        //     ],
-        // },
-        // {
-        //     FormFieldName: "Taxnumber",
-        //     DataverseFieldName: "cr697_taxnumber",
-        // },
-        {
-          FormFieldName: 'Email',
-          DataverseFieldName: 'emailaddress1',
-        },
-        {
-          FormFieldName: 'FirstName',
-          DataverseFieldName: 'firstname',
-        },
-        {
-          FormFieldName: 'LastName',
-          DataverseFieldName: 'lastname',
-        },
-        {
-          FormFieldName: 'Email',
-          DataverseFieldName: 'ct_emailct',
-        },
-        {
-          FormFieldName: 'FirstName',
-          DataverseFieldName: 'ct_firstnamect',
-        },
-        {
-          FormFieldName: 'LastName',
-          DataverseFieldName: 'ct_lastnamect',
-        },
-        {
-          FormFieldName: 'PhoneNumber',
-          DataverseFieldName: 'in2_input_mobile_phone',
-        },
-        // {
-        //     FormFieldName: "FirstName",
-        //     DataverseFieldName: "ct_firstnamect",
-        // },
-        // {
-        //     FormFieldName: "LastName",
-        //     DataverseFieldName: "cr697_lastnameleadct",
-        // },
-      ]
-
-      // Define the pagehide event listener
-
-      const handlePageHide = (e) => {
-        //console.log('pagehide event triggered')
-        submitForm(form, mappings)
-        // if (!e.persisted) {
-        //   submitForm(form, mappings)
-        // }
-      }
-
-      const handleVisibilityChange = (e) => {
-        if (document.hidden) {
-          submitForm(form, mappings)
-        } else {
-          console.log('visible event triggered')
-        }
-      }
-
-      if (isMobile()) {
-        document.addEventListener('visibilitychange', handleVisibilityChange)
-      } else {
-        window.addEventListener('unload', handlePageHide)
-        //document.addEventListener('visibilitychange', handleVisibilityChange)
-      }
-
-      // Attach pagehide event listener
-
-      //window.addEventListener('unload', handlePageHide) //ovdeeeee unload
-      // window.addEventListener('unload', () => {
-      //   submitForm(form, mappings)
-      // })
-      form.addEventListener('submit', handlePageHide)
-      //  $("ul.stepsIndicator a, button.btn-next, a.btn-prev").on("click", function () {
-      //             window.removeEventListener("unload", handlePageHide);
-      //         });
-      //         // Custom jQuery selector for case-insensitive text match
-      //     jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function (arg) {
-      //         return function (elem) {
-      //             return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-      //         };
-      //     });
-
-      //         // Remove pagehide event when clicking specific links containing "prijava"
-      //         $('a:icontains(prijava)').each((i, e) => {
-      //             $(e).on("click", function () {
-      //                 window.removeEventListener("unload", handlePageHide);
-      //             });
-      //         });
-
-      document.querySelectorAll('a').forEach((element) => {
-        element.addEventListener('click', () => {
-          console.log('skinuo event')
-          //window.removeEventListener('unload', handlePageHide)
-          //document.removeEventListener('visibilitychange', handlePageHide)
-          if (isMobile()) {
-            document.removeEventListener(
-              'visibilitychange',
-              handleVisibilityChange,
-            )
-          } else {
-            window.removeEventListener('unload', handlePageHide)
-            // document.removeEventListener(
-            //   'visibilitychange',
-            //   handleVisibilityChange,
-            // )
-          }
-        })
-      })
-    })
+    //   submitForm(form, mappings)
+    // })
   })
 
   function formSubmition(event) {

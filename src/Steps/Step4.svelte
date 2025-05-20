@@ -16,94 +16,104 @@
     DateOfbirth,
     Email,
     PhoneNumber,
-  } from "../store.js";
-  import { onMount } from "svelte";
-  import { createEventDispatcher } from "svelte";
+  } from '../store.js'
+  import { onMount } from 'svelte'
+  import { createEventDispatcher } from 'svelte'
 
   const dispatch = createEventDispatcher()
 
-
   onMount(() => {
-    console.log("Component is fully loaded!");
-
-    function track_msdynmkt_exittrigger_135927779(emailField) {
-        window["msdynmkt"].setUser({ authId: emailField }); // ID, e-mail or phone number - see instructions
-        window["msdynmkt"].trackEvent({
-            name: "msdynmkt_exittrigger_135927779", // Trigger title: Exit trigger
-            ingestionKey: "b1d765b9c293466bb1ef2ac825fc18f8-3d35c0db-60a3-4e5b-a38a-626cf4a27efb-7558",
-            version: "1.0.0",
-            properties: {
-                bindingid: emailField.value,
-            },
-        });
-
-        console.log("proslo");
-    }
-
     function submitForm(form, mappings) {
-        const serializedForm = d365mktformcapture.serializeForm(form, mappings);
-        const payload = serializedForm.SerializedForm.build();
-        const formedUrl = 
-        "https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250";
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250'
 
-        const emailValue = document.getElementById("Email")?.value.trim();
+      const emailValue = document.getElementById('Email')?.value.trim()
+      const firstNameValue = document.getElementById('FirstName')?.value.trim()
+      const lastNameValue = document.getElementById('LastName')?.value.trim()
 
-        if (emailValue !== "") {
-            console.log("fetching");
+      if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
+        console.log('fetching')
 
-            // Payload size (byte check)
-            const encoder = new TextEncoder();
-            const sizeInBytes = encoder.encode(payload.data).length;
-            console.log("Payload size (bytes):", sizeInBytes);
-
-            fetch(formedUrl, {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: payload.data,
-                keepalive: true,
-            })
-                .then(() => {
-                    console.log("submission complete");
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-
-            // Optional: sendBeacon fallback
-            // const blob = new Blob([payload.data], { type: 'application/json;charset=UTF-8' });
-            // navigator.sendBeacon(formedUrl, blob);
-
-        } else {
-            console.log("nema");
-            return;
-        }
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        console.log('nema')
+        return
+      }
     }
 
-    d365mktformcapture.waitForElement("#fakeFormTravel").then((form) => {
-        const mappings = [
-            { FormFieldName: "Email", DataverseFieldName: "emailaddress1" },
-            { FormFieldName: "FirstName", DataverseFieldName: "firstname" },
-            { FormFieldName: "LastName", DataverseFieldName: "lastname" },
-        ];
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+      const mappings = [
+        { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
+        { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
+        { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+      ]
 
-        // // Define the pagehide event listener
-        // const handlePageHide = (e) => {
-        //     console.log("pagehide event triggered");
-        //     submitForm(form, mappings);
-        // };
+      submitForm(form, mappings)
+    })
 
-        submitForm(form, mappings);
+    // function submitForm(form, mappings) {
+    //   const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+    //   const payload = serializedForm.SerializedForm.build()
+    //   const formedUrl =
+    //     'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250'
 
-        
-    });
-});
+    //   const emailValue = document.getElementById('Email')?.value.trim()
+    //   const firstNameValue = document.getElementById('FirstName')?.value.trim()
+    //   const lastNameValue = document.getElementById('LastName')?.value.trim()
 
- /////////////////////////////////////////////////////////////////
+    //   if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
+    //     console.log('fetching')
+
+    //     fetch(formedUrl, {
+    //       method: 'post',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: payload.data,
+    //       keepalive: true,
+    //     })
+    //       .then(() => {
+    //         console.log('submission complete')
+    //       })
+    //       .catch((e) => {
+    //         console.log(e)
+    //       })
+    //   } else {
+    //     console.log('nema')
+    //     return
+    //   }
+    // }
+
+    // d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+    //   const mappings = [
+    //     { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
+    //     { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
+    //     { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+    //   ]
+
+    //   submitForm(form, mappings)
+    // })
+  })
+
+  /////////////////////////////////////////////////////////////////
   function sayHi() {
     dispatch('userSubmit')
-    console.log("hi");
+    console.log('hi')
   }
 </script>
 
