@@ -51,7 +51,7 @@
     }
 
     // Wait for the form element to be ready
-    d365mktformcapture.waitForElement('#fakeFormPet').then((form) => {
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
       console.log('d365mkrtformcapture')
 
       const mappings = [
