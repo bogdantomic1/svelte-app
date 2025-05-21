@@ -58,7 +58,7 @@
       }
     }
 
-    d365mktformcapture.waitForElement('#fakeFormPetComplete').then((form) => {
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
       console.log('wiaing')
       const mappings = [
         { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
