@@ -23,15 +23,15 @@
   const dispatch = createEventDispatcher()
 
   onMount(() => {
+    const emailValue = document.getElementById('Email')?.value.trim()
+    const firstNameValue = document.getElementById('FirstName')?.value.trim()
+    const lastNameValue = document.getElementById('LastName')?.value.trim()
+
     function submitForm(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
       const formedUrl =
-        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250'
-
-      const emailValue = document.getElementById('Email')?.value.trim()
-      const firstNameValue = document.getElementById('FirstName')?.value.trim()
-      const lastNameValue = document.getElementById('LastName')?.value.trim()
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/0be0021c-4036-f011-8c4d-000d3aa92e0a'
 
       if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
         console.log('fetching')
@@ -56,7 +56,7 @@
       }
     }
 
-    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+    d365mktformcapture.waitForElement('#fakeFormPetComplete').then((form) => {
       const mappings = [
         { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
         { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
@@ -65,49 +65,6 @@
 
       submitForm(form, mappings)
     })
-
-    // function submitForm(form, mappings) {
-    //   const serializedForm = d365mktformcapture.serializeForm(form, mappings)
-    //   const payload = serializedForm.SerializedForm.build()
-    //   const formedUrl =
-    //     'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/71f3d187-1b21-f011-998a-000d3ac24250'
-
-    //   const emailValue = document.getElementById('Email')?.value.trim()
-    //   const firstNameValue = document.getElementById('FirstName')?.value.trim()
-    //   const lastNameValue = document.getElementById('LastName')?.value.trim()
-
-    //   if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
-    //     console.log('fetching')
-
-    //     fetch(formedUrl, {
-    //       method: 'post',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: payload.data,
-    //       keepalive: true,
-    //     })
-    //       .then(() => {
-    //         console.log('submission complete')
-    //       })
-    //       .catch((e) => {
-    //         console.log(e)
-    //       })
-    //   } else {
-    //     console.log('nema')
-    //     return
-    //   }
-    // }
-
-    // d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
-    //   const mappings = [
-    //     { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
-    //     { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
-    //     { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
-    //   ]
-
-    //   submitForm(form, mappings)
-    // })
   })
 
   /////////////////////////////////////////////////////////////////
