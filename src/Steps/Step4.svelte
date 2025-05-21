@@ -58,6 +58,7 @@
     }
 
     d365mktformcapture.waitForElement('#fakeFormPetComplete').then((form) => {
+      console.log('wiaing')
       const mappings = [
         { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
         { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
