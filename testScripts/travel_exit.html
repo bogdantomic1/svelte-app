@@ -1,0 +1,49 @@
+<script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
+<script>
+  $(document).ready(function () {
+    function submitForm(form, mappings) {
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/dfe80e27-2336-f011-8c4d-000d3aa92e0a'
+
+      if (
+        $('#Email').val()?.trim() &&
+        $('#FirstName').val()?.trim() &&
+        $('#LastName').val()?.trim()
+      ) {
+        console.log('fetching')
+
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        console.log('nema')
+        return
+      }
+    }
+
+    d365mktformcapture
+      .waitForElement('#fakeFormTravelComplete')
+      .then((form) => {
+        const mappings = [
+          { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
+          { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+          { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
+        ]
+
+        submitForm(form, mappings)
+      })
+  })
+</script>

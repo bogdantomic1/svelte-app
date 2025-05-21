@@ -1,0 +1,152 @@
+<script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
+
+<script>
+  $(document).ready(function () {
+    console.log('DOM LOADED...')
+    // Define the submitForm function
+    function submitForm(form, mappings) {
+      console.log('submit form ready...')
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/18b8aa0f-8705-f011-bae2-6045bd8fc0e2'
+
+      if (
+        $('#Email').val()?.trim() &&
+        $('#FirstName').val()?.trim() &&
+        $('#LastName').val()?.trim()
+      ) {
+        console.log('fetching...')
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        console.log('nema')
+        return
+      }
+    }
+
+    // Wait for the form element to be ready
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+      console.log('d365mkrtformcapture')
+      const mappings = [
+        {
+          FormFieldName: 'Numberofpeople',
+          DataverseFieldName: 'ct_numberofpeoplefortravelinsurance',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Individually
+            { FormValue: '206450001', DataverseValue: '206450001' }, // Family
+            { FormValue: '206450002', DataverseValue: '206450002' }, // Group
+          ],
+        },
+        {
+          FormFieldName: 'lnamStartingdayofinsurancee',
+          DataverseFieldName: 'ct_startingdateofinsurance',
+        },
+        {
+          FormFieldName: 'Durationofinsurance',
+          DataverseFieldName: 'ct_durationoftravelinsurance',
+          DataverseFieldValue: [
+            { FormValue: '206450002', DataverseValue: '206450002' }, // 2 days
+            { FormValue: '206450003', DataverseValue: '206450003' }, // 3 days
+            { FormValue: '206450004', DataverseValue: '206450004' }, // 5 days
+            { FormValue: '206450005', DataverseValue: '206450005' }, // 8 days
+            { FormValue: '206450006', DataverseValue: '206450006' }, // 15 days
+            { FormValue: '206450007', DataverseValue: '206450007' }, // 21 days
+            { FormValue: '206450008', DataverseValue: '206450008' }, // 30 days
+            { FormValue: '206450009', DataverseValue: '206450009' }, // 60 days
+            { FormValue: '206450010', DataverseValue: '206450010' }, // 1 year
+          ],
+        },
+        {
+          FormFieldName: 'Durationoftrip',
+          DataverseFieldName: 'ct_durationoftravel',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Less than 90 days
+            { FormValue: '206450001', DataverseValue: '206450001' }, // 90 or more days
+          ],
+        },
+        {
+          FormFieldName: 'Riskexposure',
+          DataverseFieldName: 'ct_exposuretorisk',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Yes
+            { FormValue: '206450001', DataverseValue: '206450001' }, // No
+          ],
+        },
+        {
+          FormFieldName: 'Packet',
+          DataverseFieldName: 'ct_travelpackage',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // A
+            { FormValue: '206450001*', DataverseValue: '206450001' }, // B
+            { FormValue: '206450002', DataverseValue: '206450002' }, // C
+          ],
+        },
+        {
+          FormFieldName: 'Taxnumber',
+          DataverseFieldName: 'in2_tax_number',
+        },
+        {
+          FormFieldName: 'City',
+          DataverseFieldName: 'address1_city',
+        },
+        {
+          FormFieldName: 'Street',
+          DataverseFieldName: 'in2_address1_street',
+        },
+        {
+          FormFieldName: 'HouseNumber',
+          DataverseFieldName: 'in2_address1_house_no',
+        },
+        {
+          FormFieldName: 'GenderCT',
+          DataverseFieldName: 'in2_gender',
+          DataverseFieldValue: [
+            { FormValue: '1', DataverseValue: '1' }, // Male
+            { FormValue: '2', DataverseValue: '2' }, // Female
+            { FormValue: '3', DataverseValue: '3' }, // Undefined
+          ],
+        },
+        {
+          FormFieldName: 'FirstName',
+          DataverseFieldName: 'firstname',
+        },
+        {
+          FormFieldName: 'DateOfbirth',
+          DataverseFieldName: 'in2_date_of_birth',
+        },
+        {
+          FormFieldName: 'PhoneNumber',
+          DataverseFieldName: 'in2_input_mobile_phone',
+        },
+        {
+          FormFieldName: 'LastName',
+          DataverseFieldName: 'lastname',
+        },
+        {
+          FormFieldName: 'Email',
+          DataverseFieldName: 'emailaddress1',
+        },
+        {
+          FormFieldName: 'AbandonedCartUrl',
+          DataverseFieldName: 'ct_abandonedcarturl',
+        },
+      ]
+
+      submitForm(form, mappings)
+    })
+  })
+</script>

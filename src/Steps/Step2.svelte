@@ -17,21 +17,23 @@
     console.log('step 2')
 
     function submitForm(form, mappings) {
+      console.log('submit form ready...')
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
+
       const formedUrl =
-        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a'
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/ee7643dd-3e36-f011-8c4d-000d3aa92e0a'
+
       if (
         document.getElementById('Email')?.value.trim() !== '' &&
         document.getElementById('FirstName')?.value.trim() !== '' &&
         document.getElementById('LastName')?.value.trim() !== ''
       ) {
-        //document.getElementById("Email").value.trim() !== ""
-        console.log('fetching')
+        console.log('fetching...')
         fetch(formedUrl, {
           method: 'post',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8',
           },
           body: payload.data,
           keepalive: true,
@@ -47,12 +49,60 @@
         return
       }
     }
-    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
-      console.log(form)
+
+    // Wait for the form element to be ready
+    d365mktformcapture.waitForElement('#fakeFormPet').then((form) => {
+      console.log('d365mkrtformcapture')
+
       const mappings = [
         {
-          FormFieldName: 'Email',
-          DataverseFieldName: 'emailaddress1',
+          FormFieldName: 'petType',
+          DataverseFieldName: 'ct_pettype',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Cat
+            { FormValue: '206450001', DataverseValue: '206450001' }, // Dog
+          ],
+        },
+        {
+          FormFieldName: 'petName',
+          DataverseFieldName: 'ct_petname',
+        },
+        {
+          FormFieldName: 'petDateOfBirth',
+          DataverseFieldName: 'ct_petdateofbirth',
+        },
+        {
+          FormFieldName: 'packageForPet',
+          DataverseFieldName: 'ct_packageforpet',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Small
+            { FormValue: '206450001', DataverseValue: '206450001' }, // Big
+            { FormValue: '206450002', DataverseValue: '206450002' }, // Comfort
+          ],
+        },
+        {
+          FormFieldName: 'responsibilityPetOwner',
+          DataverseFieldName: 'ct_responsibilityofpetowner',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Yes
+            { FormValue: '206450001', DataverseValue: '206450001' }, // No
+          ],
+        },
+        {
+          FormFieldName: 'Taxnumber',
+          DataverseFieldName: 'in2_tax_number',
+        },
+        {
+          FormFieldName: 'City',
+          DataverseFieldName: 'address1_city',
+        },
+        {
+          FormFieldName: 'Street',
+          DataverseFieldName: 'in2_address1_street',
+        },
+        {
+          FormFieldName: 'HouseNumber',
+          DataverseFieldName: 'in2_address1_house_no',
         },
         {
           FormFieldName: 'FirstName',
@@ -63,8 +113,20 @@
           DataverseFieldName: 'lastname',
         },
         {
+          FormFieldName: 'DateOfbirth',
+          DataverseFieldName: 'ct_dateofbirth',
+        },
+        {
+          FormFieldName: 'Email',
+          DataverseFieldName: 'emailaddress1',
+        },
+        {
           FormFieldName: 'PhoneNumber',
           DataverseFieldName: 'in2_input_mobile_phone',
+        },
+        {
+          FormFieldName: 'AbandonedCartUrl',
+          DataverseFieldName: 'ct_abandonedcarturl',
         },
       ]
 
