@@ -24,9 +24,6 @@
 
   onMount(() => {
     console.log('anmaunt')
-    const emailValue = document.getElementById('Email')?.value.trim()
-    const firstNameValue = document.getElementById('FirstName')?.value.trim()
-    const lastNameValue = document.getElementById('LastName')?.value.trim()
 
     function submitForm(form, mappings) {
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
@@ -34,7 +31,11 @@
       const formedUrl =
         'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/0be0021c-4036-f011-8c4d-000d3aa92e0a'
 
-      if (emailValue !== '' && firstNameValue !== '' && lastNameValue !== '') {
+      if (
+        document.getElementById('Email')?.value.trim() !== '' &&
+        document.getElementById('FirstName')?.value.trim() !== '' &&
+        document.getElementById('LastName')?.value.trim() !== ''
+      ) {
         console.log('fetching')
 
         fetch(formedUrl, {
