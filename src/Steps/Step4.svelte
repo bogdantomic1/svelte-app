@@ -23,6 +23,7 @@
   const dispatch = createEventDispatcher()
 
   onMount(() => {
+    console.log('anmaunt')
     const emailValue = document.getElementById('Email')?.value.trim()
     const firstNameValue = document.getElementById('FirstName')?.value.trim()
     const lastNameValue = document.getElementById('LastName')?.value.trim()
