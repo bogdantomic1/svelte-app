@@ -64,6 +64,7 @@
         { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
         { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
       ]
+      console.log('here')
 
       submitForm(form, mappings)
     })
