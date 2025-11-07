@@ -1,0 +1,58 @@
+<script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
+<script>
+  $(document).ready(function () {
+    function submitForm(form, mappings) {
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/40ee6f68-a215-4acd-9b7d-a6e91e59d457/landingpageforms/forms/4f9c4d83-b14d-f011-877a-6045bdf4e2d3'
+      if (
+        $('#Email').val()?.trim() &&
+        $('#FirstName').val()?.trim() &&
+        $('#LastName').val()?.trim()
+      ) {
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        return
+      }
+    }
+    d365mktformcapture.waitForElement('#fakeFormLAJF').then((form) => {
+      console.log('d365mkrtformcapture')
+      const mappings = [
+        {
+          FormFieldName: 'AbandonedCartUrl',
+          DataverseFieldName: 'ct_abandonedcarturl',
+        },
+        {
+          FormFieldName: 'FirstName',
+          DataverseFieldName: 'firstname',
+        },
+
+        {
+          FormFieldName: 'LastName',
+          DataverseFieldName: 'lastname',
+        },
+
+        {
+          FormFieldName: 'Email',
+          DataverseFieldName: 'emailaddress1',
+        },
+      ]
+
+      submitForm(form, mappings)
+    })
+  })
+</script>

@@ -36,89 +36,99 @@
     Email,
   } from './store.js'
 
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('USAOOOOAOOAOAOAOOAO steps')
-    // function submitForm(form, mappings) {
-    //   const serializedForm = d365mktformcapture.serializeForm(form, mappings)
-    //   const payload = serializedForm.SerializedForm.build()
-    //   const formedUrl =
-    //     'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/8fb7be5e-5120-f011-9989-000d3aa92e0a'
-    //   //const formedUrl = "https://webhook.site/0d2677a7-9573-4972-bf4f-bc220a59bc5c";
-    //   if (
-    //     document.getElementById('Email')?.value.trim() !== '' &&
-    //     document.getElementById('FirstName')?.value.trim() !== '' &&
-    //     document.getElementById('LastName')?.value.trim() !== ''
-    //   ) {
-    //     //document.getElementById("Email").value.trim() !== ""
-    //     console.log('fetching')
-    //     fetch(formedUrl, {
-    //       method: 'post',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: payload.data,
-    //       keepalive: true,
-    //     })
-    //       .then(() => {
-    //         console.log('submission complete')
-    //       })
-    //       .catch((e) => {
-    //         console.log(e)
-    //       })
-    //   } else {
-    //     console.log('nema')
-    //     return
-    //   }
-    // }
-    // d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
-    //   console.log(form)
-    //   const mappings = [
-    //     {
-    //       FormFieldName: 'Email',
-    //       DataverseFieldName: 'emailaddress1',
-    //     },
-    //     {
-    //       FormFieldName: 'FirstName',
-    //       DataverseFieldName: 'firstname',
-    //     },
-    //     {
-    //       FormFieldName: 'LastName',
-    //       DataverseFieldName: 'lastname',
-    //     },
-    //     {
-    //       FormFieldName: 'Email',
-    //       DataverseFieldName: 'ct_emailct',
-    //     },
-    //     {
-    //       FormFieldName: 'FirstName',
-    //       DataverseFieldName: 'ct_firstnamect',
-    //     },
-    //     {
-    //       FormFieldName: 'LastName',
-    //       DataverseFieldName: 'ct_lastnamect',
-    //     },
-    //     {
-    //       FormFieldName: 'PhoneNumber',
-    //       DataverseFieldName: 'in2_input_mobile_phone',
-    //     },
-    //   ]
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   console.log('USAOOOOAOOAOAOAOOAO steps')
+  //   function submitForm(form, mappings) {
+  //     const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+  //     const payload = serializedForm.SerializedForm.build()
+  //     const formedUrl =
+  //       'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/97dadcd1-86b5-f011-bbd2-7ced8d94627e'
+  //     if (
+  //       document.getElementById('Email')?.value.trim() !== '' &&
+  //       document.getElementById('FirstName')?.value.trim() !== '' &&
+  //       document.getElementById('LastName')?.value.trim() !== ''
+  //     ) {
+  //       console.log('fetchingexit')
+  //       fetch(formedUrl, {
+  //         method: 'post',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: payload.data,
+  //         keepalive: true,
+  //       })
+  //         .then(() => {
+  //           console.log('submission complete exit')
+  //         })
+  //         .catch((e) => {
+  //           console.log(e)
+  //         })
+  //     } else {
+  //       console.log('nema')
+  //       return
+  //     }
+  //   }
+  //   d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+  //     console.log(form)
+  //     const mappings = [
+  //       {
+  //         FormFieldName: 'Email',
+  //         DataverseFieldName: 'emailaddress1',
+  //       },
+  //       {
+  //         FormFieldName: 'FirstName',
+  //         DataverseFieldName: 'firstname',
+  //       },
+  //       {
+  //         FormFieldName: 'LastName',
+  //         DataverseFieldName: 'lastname',
+  //       },
+  //     ]
 
-    //   submitForm(form, mappings)
-    // })
-  })
+  //     submitForm(form, mappings)
+  //   })
+  // })
+
+  function submitForm() {
+    console.log('Form submission started')
+
+    d365mktformcapture.waitForElement('#fakeFormTravel').then((form) => {
+      console.log('Form found:', form)
+
+      const mappings = [
+        { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
+        { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
+        { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+      ]
+
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/97dadcd1-86b5-f011-bbd2-7ced8d94627e'
+
+      const email = document.getElementById('Email')?.value.trim()
+      const first = document.getElementById('FirstName')?.value.trim()
+      const last = document.getElementById('LastName')?.value.trim()
+
+      if (email && first && last) {
+        console.log('fetching...')
+        fetch(formedUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => console.log('Submission complete'))
+          .catch((e) => console.error('Error:', e))
+      } else {
+        console.warn('Missing form data')
+      }
+    })
+  }
 
   function formSubmition(event) {
     event.preventDefault()
-    console.log('form submited1')
-    let form = document.getElementById('fakeFormTravel')
-    if (form) {
-      let event = new Event('submit', { bubbles: true, cancelable: true })
-      form.dispatchEvent(event)
-      console.log('Submit event dispatched!')
-    } else {
-      console.error('Form not found!')
-    }
-
+    submitForm()
     console.log('form ended')
   }
 
@@ -279,7 +289,7 @@
       {#if $formType == 'Travel'}
         <Step4 on:userSubmit={formSubmition} />
       {:else}
-        <AccidentStep4 on:userSubmit={removeListener} />
+        <AccidentStep4 on:userSubmit={formSubmition} />
       {/if}
     {/if}
 

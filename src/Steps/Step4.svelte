@@ -29,7 +29,7 @@
       const serializedForm = d365mktformcapture.serializeForm(form, mappings)
       const payload = serializedForm.SerializedForm.build()
       const formedUrl =
-        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/0be0021c-4036-f011-8c4d-000d3aa92e0a'
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/3b260307-7cb5-f011-bbd2-7ced8d94627e'
 
       if (
         document.getElementById('Email')?.value.trim() !== '' &&
@@ -64,6 +64,10 @@
         { FormFieldName: 'Email', DataverseFieldName: 'emailaddress1' },
         { FormFieldName: 'FirstName', DataverseFieldName: 'firstname' },
         { FormFieldName: 'LastName', DataverseFieldName: 'lastname' },
+        {
+          FormFieldName: 'Taxnumber',
+          DataverseFieldName: 'ct_policyvalue',
+        },
       ]
       console.log('here')
 
@@ -75,6 +79,7 @@
   function sayHi() {
     dispatch('userSubmit')
     console.log('hi')
+    //submitForm(form, mappings)
   }
 </script>
 

@@ -1,0 +1,110 @@
+<script src="https://cxppusa1formui01cdnsa01-endpoint.azureedge.net/eur/FormCapture/FormCapture.bundle.js"></script>
+<script>
+  $(document).ready(function () {
+    function submitForm(form, mappings) {
+      const serializedForm = d365mktformcapture.serializeForm(form, mappings)
+      const payload = serializedForm.SerializedForm.build()
+      const formedUrl =
+        'https://public-eur.mkt.dynamics.com/api/v1.0/orgs/031746fd-6eb4-43a8-9fa4-4488bcfad3ba/landingpageforms/forms/3b260307-7cb5-f011-bbd2-7ced8d94627e'
+      if (
+        $('#Email').val()?.trim() &&
+        $('#FirstName').val()?.trim() &&
+        $('#LastName').val()?.trim()
+      ) {
+        fetch(formedUrl, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+          body: payload.data,
+          keepalive: true,
+        })
+          .then(() => {
+            console.log('submission complete')
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      } else {
+        return
+      }
+    }
+    d365mktformcapture.waitForElement('#fakeFormCar').then((form) => {
+      console.log('d365mkrtformcapture')
+      const mappings = [
+        {
+          FormFieldName: 'carBeginningDate',
+          DataverseFieldName: 'ct_beginingdateofcarinsurance',
+        },
+        {
+          FormFieldName: 'carFirstDateRegistration',
+          DataverseFieldName: 'ct_dateoffirstregistration',
+        },
+        {
+          FormFieldName: 'carPackage',
+          DataverseFieldName: 'ct_packageforcar',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Mali paket
+            { FormValue: '206450001', DataverseValue: '206450001' }, // Veliki paket
+            { FormValue: '206450002', DataverseValue: '206450002' }, // Veliki+ paket
+          ],
+        },
+        {
+          FormFieldName: '***Please fill***',
+          DataverseFieldName: 'ct_policyvalue',
+        },
+        {
+          FormFieldName: 'carAssistance',
+          DataverseFieldName: 'ct_carassistance',
+          DataverseFieldValue: [
+            { FormValue: '206450000', DataverseValue: '206450000' }, // Mini
+            { FormValue: '206450001', DataverseValue: '206450001' }, // Plus
+            { FormValue: '206450002', DataverseValue: '206450002' }, // Comfort
+          ],
+        },
+        {
+          FormFieldName: 'Taxnumber',
+          DataverseFieldName: 'in2_tax_number',
+        },
+        {
+          FormFieldName: 'City',
+          DataverseFieldName: 'address1_city',
+        },
+        {
+          FormFieldName: 'Street',
+          DataverseFieldName: 'in2_address1_street',
+        },
+        {
+          FormFieldName: 'HouseNumber',
+          DataverseFieldName: 'in2_address1_house_no',
+        },
+        {
+          FormFieldName: 'DateOfbirth',
+          DataverseFieldName: 'in2_date_of_birth',
+        },
+        {
+          FormFieldName: 'PhoneNumber',
+          DataverseFieldName: 'in2_input_mobile_phone',
+        },
+        {
+          FormFieldName: 'AbandonedCartUrl',
+          DataverseFieldName: 'ct_abandonedcarturl',
+        },
+        {
+          FormFieldName: 'FirstName',
+          DataverseFieldName: 'firstname',
+        },
+        {
+          FormFieldName: 'LastName',
+          DataverseFieldName: 'lastname',
+        },
+        {
+          FormFieldName: 'Email',
+          DataverseFieldName: 'emailaddress1',
+        },
+      ]
+
+      submitForm(form, mappings)
+    })
+  })
+</script>
